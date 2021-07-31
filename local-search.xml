@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>白嫖微软超大5T不限速网盘教程</title>
+    <link href="/2021/07/31/E5/"/>
+    <url>/2021/07/31/E5/</url>
+    
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>通过注册微软E5账号来获得5T的<strong>OneDrive for Business</strong>储存空间并通过API调用维持账号活跃度增加续订成功率，再用<strong>Cloudreve</strong>挂载实现白嫖5T永久?高速网盘   </p><div class="note note-warning">            <p>虽然有了自动续订方案，但成功率也不是100%，相较于教育邮箱开通的账号，至少E5不会突然猝死，一个订阅周期是90天，如果账号在尝试续订时失败仍有时间转移数据，可以当作文件分享和不重要的大文件转存使用，不建议当作数据归档盘使用(归档放某度不香吗?)</p>          </div><h2 id="展示"><a href="#展示" class="headerlink" title="展示"></a>展示</h2><p>先来看看成品是什么样的吧<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731131632.png"><br>这里的5T容量来自Onedrive for Business(非国内的世纪互联),速度不是非常稳定，可是这个可是零成本啊，要什么自行车，当作分享文件的暂存盘简直不要太合适。  </p><ul><li><strong>湖北移动300M单线程速度测试</strong><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/test.png">    </li></ul><p>网络环境不同，下载速度可能有比较大的差异    </p><p>测试文件:<a href="https://loli.icemilk.top/s/BYcb">test.test</a></p><h2 id="搭建Cloudreve"><a href="#搭建Cloudreve" class="headerlink" title="搭建Cloudreve"></a>搭建Cloudreve</h2><p><a href="https://github.com/cloudreve/Cloudreve">项目地址</a> • <a href="https://docs.cloudreve.org/">手册地址</a></p><p>如何搭建在原项目手册里面已经非常详细地展现了，这里就不展开了  </p><div class="note note-info">            <ul><li>需要一台云服务器</li><li>上传下载流量不走服务器</li><li>关于反向代理，如果用了宝塔面板，可以不用去动<strong>nginx</strong>的配置文件，直接在网站设置的反向代理里填写代理的本地地址即可<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731133547.png">  </li></ul>          </div> <h3 id="流量"><a href="#流量" class="headerlink" title="流量"></a>流量</h3><ul><li><p>不经过<strong>Cloudreve</strong>所在服务器的流量:  </p><div class="note note-success">            <ul><li>上传/下载操作</li><li>WebDAV连接后的上传/下载操作</li><li>下载分享的文件</li><li>在线预览</li></ul>          </div></li><li><p>经过<strong>Cloudreve</strong>所在服务器的流量: </p><div class="note note-danger">            <ul><li>在线解压缩</li><li>离线下载</li></ul>          </div><h2 id="微软E5开发者账号申请"><a href="#微软E5开发者账号申请" class="headerlink" title="微软E5开发者账号申请"></a>微软E5开发者账号申请</h2></li><li><p>先进入<a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">微软开发者中心</a>点击<span class="label label-info">立即加入</span>，这个时候会让你登录，用自己平常使用的账号登录就好  </p></li><li><p> 填写基本信息，国家<strong>China</strong>会影响你的OneDrive及其他服务的地理位置，后续信息继续填完<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731135005.png">   </p></li><li><p>上一个表填完后会转跳到开发者页面，点击中间的<span class="label label-info">设置E5订阅</span>，按需填写<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731135634.png"> </p></li><li><p> 最后验证手机号**(记得404上网)**  </p></li></ul><p>默认的OneDrive空间只有1T，进入<a href="https://admin.onedrive.com/?v=StorageSettings">OneDrive管理中心</a>，会提示已经迁移，等他自动转跳到<strong>SharePoint管理中心</strong>将<span class="label label-info">储存空间上限</span>改为5T<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731141033.png"> </p><h2 id="Cloudreve挂载OneDrive"><a href="#Cloudreve挂载OneDrive" class="headerlink" title="Cloudreve挂载OneDrive"></a>Cloudreve挂载OneDrive</h2><p>打开<strong>Cloudreve</strong>进入<span class="label label-info">储存策略</span>(右上角头像进入管理面板)，添加新的储存策略，按照提示一步一步操作即可  </p><div class="note note-warning">            <ul><li><strong>Azure</strong>登录的账号<strong>不是</strong>你自己的微软账号了，而是刚才注册的E5账号<strong><a href="mailto:&#120;&#x78;&#x78;&#64;&#x78;&#120;&#120;&#x2e;&#111;&#x6e;&#x6d;&#105;&#x63;&#114;&#x6f;&#115;&#111;&#102;&#x74;&#46;&#x63;&#x6f;&#x6d;">&#120;&#x78;&#x78;&#64;&#x78;&#120;&#120;&#x2e;&#111;&#x6e;&#x6d;&#105;&#x63;&#114;&#x6f;&#115;&#111;&#102;&#x74;&#46;&#x63;&#x6f;&#x6d;</a></strong></li><li><strong>Cloudreve</strong>设置里面的账号类型选择<strong>国际版</strong></li><li>储存策略添加后要把账号组默认策略改一下才能生效</li></ul>          </div><h2 id="E5续订"><a href="#E5续订" class="headerlink" title="E5续订"></a>E5续订</h2><h3 id="应用注册"><a href="#应用注册" class="headerlink" title="应用注册"></a>应用注册</h3><ul><li>打开<a href="https://portal.azure.com/#home">Azure面板</a>，用刚才的E5账号登录  </li><li>登录完成后点击右上角的<span class="label label-info">门户</span>按钮进入Azure管理中心，在搜索栏内输入<span class="label label-info">应用注册</span>，点击进入</li><li>上一步如果找不到<a href="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade">点此直接进入</a><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731143534.png">  </li><li>单击<span class="label label-info">新注册</span>按钮  </li><li><span class="label label-info">配置应用</span>应用名称随意写，注意<span class="label label-info">可访问性选项</span>选择最后一项<span class="label label-info">重定向URL</span>暂时不填，完成后点击<span class="label label-info">注册</span>  <img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731143804.png">  </li></ul><h3 id="配置应用重定向URL-身份验证"><a href="#配置应用重定向URL-身份验证" class="headerlink" title="配置应用重定向URL(身份验证)"></a>配置应用重定向URL(身份验证)</h3><ul><li>先点击<span class="label label-info">概述</span>然后点击<span class="label label-info">添加重定向URL</span>进入重定向URL配置界面，下图中的<span class="label label-info">应用程序(客户端)ID</span>即为<strong>客户端ID</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="应用程序 ID  ">[1]</span></a></sup><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731144003.png"></li><li>点击<span class="label label-info">添加平台</span>，再点击<span class="label label-info">移动和桌面应用程序</span><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731144146.png">  </li><li>继续勾选中第一个URL，最后点击底部的<span class="label label-info">配置</span>，该URL为<span class="label label-info">https://login.microsoftonline.com/common/oauth2/nativeclient</span>，也可手动添加<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731144210.png"></li><li>配置默认客户端类型将应用程序视为公共客户端 点击切换按钮为<strong>是</strong> ，最后点击<span class="label label-info">保存</span>按钮保存<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731144233.png"> </li></ul><h3 id="配置应用程序的API权限"><a href="#配置应用程序的API权限" class="headerlink" title="配置应用程序的API权限"></a>配置应用程序的API权限</h3><ul><li>点击<span class="label label-info">API权限</span>-<span class="label label-info">添加权限</span>-<span class="label label-info">Microsoft Graph</span><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150151.png"> </li><li>选择<span class="label label-info">委托的权限</span><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150203.png"> </li><li>下面列出的API权限需求表<strong>依次勾选</strong>  <div class="note note-primary">            <p>登录调用（API权限可使用PC版程序自动配置）<br>BookingsAppointment.ReadWrite.All; Calendars.Read; Contacts.Read; Directory.Read.All;<br>Files.Read.All; Files.ReadWrite.All; Group.Read.All; Mail.Read; Mail.Send; MailboxSettings.Read;<br>Notes.Read.All; People.Read.All; Presence.Read.All; Sites.Read.All; Tasks.ReadWrite; User.Read.All;</p>          </div></li><li>最后点击<span class="label label-info">添加权限</span><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150229.png"><br>添加完成的效果如图,如果没有<span class="label label-info">代表XXX授予管理员同意</span>按钮 说明该账号不是管理员账号 换登管理员账号创建应用<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150243.png"> </li><li>最后点击<span class="label label-info">代表XXX授予管理员同意</span>,对话框选择<strong>是</strong>  </li></ul><div class="note note-primary">            <p>该图包含了当前程序委托的权限(用户登录)全部API所需要的权限<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150303.png"> </p>          </div><h3 id="将账号API调用托管至服务"><a href="#将账号API调用托管至服务" class="headerlink" title="将账号API调用托管至服务"></a>将账号API调用托管至服务</h3><ul><li>下列网站任选一个进入，用<span class="label label-info">Microsoft</span>或者<span class="label label-info">Github</span>登录，点击<span class="label label-info">编辑配置</span>  </li></ul><div class="note note-primary">            <ul><li><a href="https://e5.sundayrx.net/">https://e5.sundayrx.net</a></li><li><a href="https://ms-e5-renew.leeskyler.top:11015/">https://ms-e5-renew.leeskyler.top:11015</a></li><li><a href="https://ms-e5-renew-2.eastern.moe/">https://ms-e5-renew-2.eastern.moe</a></li></ul>          </div>  <p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731160700.png"></p><ul><li>填写下表<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731160939.png">  </li></ul><div class="note note-info">            <ul><li>账号密码填写你的<strong>E5账号</strong>密码  </li><li><strong>应用程序 ID</strong>为之前创建应用时给的客户端id，具体位置请看后面跳转</li><li>API调用方式选择<strong>登录调用</strong></li></ul>          </div><p>没有意外的话E5续订程序就会自动执行了</p><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><strong>应用程序 ID</strong><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Docker</tag>
+      
+      <tag>E5续订</tag>
+      
+      <tag>Cloudreve</tag>
+      
+      <tag>网盘</tag>
+      
+      <tag>5T</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>N1盒子Docker挂载群晖NFS共享目录</title>
+    <link href="/2021/07/09/n1/"/>
+    <url>/2021/07/09/n1/</url>
+    
+    <content type="html"><![CDATA[<h2 id="始于emby"><a href="#始于emby" class="headerlink" title="始于emby"></a>始于emby</h2><p>一开始的emby跑在猫盘群晖上，但猫盘本来就跑了qb来挂pt，再跑emby还是挺吃力的，故转移到n1上，数据储存还是用猫盘，于是通过网络映射猫盘NFS共享目录，让猫盘只承担文件传输的负载。</p><h2 id="群晖开启nfs"><a href="#群晖开启nfs" class="headerlink" title="群晖开启nfs"></a>群晖开启nfs</h2><p>群晖控制面板-&gt;文件服务，把NFS和启用NFSv4.1支持都勾上，应用<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/01.png"><br>控制面板-&gt;共享文件夹，选你要映射的文件夹，编辑-&gt;NFS权限，新增，如下图填写<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/02.png"><br>其中 <strong>服务器名称或IP地址</strong> 填你要赋予映射权限的 <strong>设备ip/网段</strong> ，或者直接用通配符 ***** 表示忽略来源限制，所有能连上来的设备都可以映射，反正局域网无所畏惧(<strong>误</strong>)。注意 <strong>Squash</strong> 一定要选<strong>映射所有用户为admin</strong> 不然没权限。</p><h2 id="创建Docker-Volume"><a href="#创建Docker-Volume" class="headerlink" title="创建Docker Volume"></a>创建Docker Volume</h2><p>使用docker创建驱动类型为nfs4的磁盘volume-nfs，并指定该nfs的ip，共享目录的权限，以及共享目录</p><div class="code-wrapper"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker volume create --driver local \</span>--opt <span class="hljs-built_in">type</span>=nfs4 --opt o=addr=192.168.6.99,rw \--opt device=:/volume1/catdrive volume-nfs<span class="hljs-comment"># 参数解释</span>--driver , -d    <span class="hljs-built_in">local</span>    <span class="hljs-comment"># 指定卷驱动程序名称，local为默认</span>--name        <span class="hljs-comment"># 指定卷名</span>--opt , -o    <span class="hljs-comment"># 设置驱动程序特定选项</span>addr=         <span class="hljs-comment"># 群晖Nas的ip</span>device=       <span class="hljs-comment"># 后面是群晖的目录，也就是你给了nfs权限的那个共享文件夹目录</span></code></pre></div><p>查看创建好的volume</p><div class="code-wrapper"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker volume ls</span>DRIVER              VOLUME NAME<span class="hljs-built_in">local</span>               volume-nfs</code></pre></div><p>查看该volume的信息</p><div class="code-wrapper"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker volume inspect volume-nfs</span>[    &#123;        <span class="hljs-string">&quot;CreatedAt&quot;</span>: <span class="hljs-string">&quot;2021-07-08T14:16:38+08:00&quot;</span>,        <span class="hljs-string">&quot;Driver&quot;</span>: <span class="hljs-string">&quot;local&quot;</span>,        <span class="hljs-string">&quot;Labels&quot;</span>: &#123;&#125;,        <span class="hljs-string">&quot;Mountpoint&quot;</span>: <span class="hljs-string">&quot;/mnt/mmcblk2p3/docker/volumes/volume-nfs/_data&quot;</span>,        <span class="hljs-comment"># volume-fs的挂载点</span>        <span class="hljs-string">&quot;Name&quot;</span>: <span class="hljs-string">&quot;volume-nfs&quot;</span>,        <span class="hljs-string">&quot;Options&quot;</span>: &#123;            <span class="hljs-string">&quot;device&quot;</span>: <span class="hljs-string">&quot;:/volume1/catdrive&quot;</span>, <span class="hljs-comment"># nfs共享目录</span>            <span class="hljs-string">&quot;o&quot;</span>: <span class="hljs-string">&quot;addr=192.168.6.99,rw&quot;</span>, <span class="hljs-comment"># nfs服务器地址</span>            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;nfs4&quot;</span> <span class="hljs-comment"># 驱动类型</span>        &#125;,        <span class="hljs-string">&quot;Scope&quot;</span>: <span class="hljs-string">&quot;local&quot;</span>    &#125;]</code></pre></div><p>于是在建立容器的时候就可以用 -v来使用这个nfs卷了，以我的emby服务为例，我想把这个卷挂到/neko文件夹下，建立embyserver代码就应该是</p><div class="code-wrapper"><pre><code class="hljs bash">docker run -d \--name emby \--restart=always \-v volume-nfs:/neko \   <span class="hljs-comment">#ここ，就是这个</span>--network host \--env UID=1000 \--env GID=100 \emby/embyserver_arm64v8:4.6.0.3</code></pre></div><p>进入容器里面看看</p><div class="code-wrapper"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker exec -it emby /bin/sh</span>/ <span class="hljs-comment"># ls</span>bin       dev       home      lib       licenses  proc      sys       tmp       varconfig    etc       init      libexec   neko      root      system    usr</code></pre></div><p>可以看见neko文件夹已经出来了，可以作为emby的媒体库使用了。<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/03.png"></p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>一开始用的是N1-openwrt自带的cifs/smb映射工具把群晖的目录映射在N1的文件系统里，再用docker映射这个目录，但是没有成功，容器一直无法启动。还有一种方法是在容器内部直接用mount指令挂载，只要赋予了**–privileged=true**参数，是可以成功挂载上的，但是如何在docker启动时自动运行挂载命令挺麻烦，搁置<br>后来看到了这位大佬的文章<br><a href="https://www.feiyiblog.com/2020/03/31/Docker%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8-%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/">https://www.feiyiblog.com/2020/03/31/Docker%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8-%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/</a><br>于是模仿得出了目前的解决方案，本文核心内容均来自于此。<br>关于Docker的问题，也可以看看这个帖子<br><a href="https://blog.csdn.net/u013072756/article/details/108987173">https://blog.csdn.net/u013072756/article/details/108987173</a></p><p>このまま！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Docker</tag>
+      
+      <tag>日常</tag>
+      
+      <tag>N1盒子</tag>
+      
+      <tag>NFS</tag>
+      
+      <tag>群晖</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https</title>
+    <link href="/2021/04/13/sakurafrp/"/>
+    <url>/2021/04/13/sakurafrp/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/00.png"><br>sakurafrp提供免费的内网穿透服务，它们的服务器大多都在国内，延迟十分优秀，免费用户最多拥有5条10mbps的隧道，每月流量有5Gb上限，但是可以通过签到获取大量流量(每天获得3Gb左右)，流量超出后不会停用隧道而是进入限速4mbps的限速模式。作为个人使用访问家中设备的隧道，免费用户已经完全能满足需求了，更详细的流量规则请去它的官网看看吧<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/01.png"><br>首先呢你要有</p><ul><li>  一个sakurafrp的账号，去<a href="https://www.natfrp.com/">这里</a>注册</li><li>  一个<strong>已备案</strong>的域名，或<strong>未备案</strong>的域名(使用高延迟的非中国大陆节点)</li><li>  你的群晖nas<h2 id="获取frpc配置文件"><a href="#获取frpc配置文件" class="headerlink" title="获取frpc配置文件"></a>获取frpc配置文件</h2>登录Sakurafrp控制台转到创建隧道<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/02.png"><br>上面的穿透节点按需选择，我们需要选择<strong>可建站</strong>的节点来进行穿透，隧道选择<strong>https隧道</strong>，如果使用<strong>tcp</strong>协议代理，那么访问域名的时候需要加上端口，不方便也不美观。本地端口请填写<strong>你的群晖nas</strong>中设置的https访问端口，默认端口是5001(如果你没有改过的话)，绑定域名处填写你自己的域名就好了</li></ul><p>回到隧道列表，点击刚才创建隧道的<strong>配置文件</strong><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/03.png"><br>这个框里面的就是我们要的<strong>配置文件</strong>了，暂时搁置，后面会用到，还有别忘了将你的域名<strong>CNAME</strong>到这个节点域名上</p><h2 id="安装frpc"><a href="#安装frpc" class="headerlink" title="安装frpc"></a>安装frpc</h2><p>ssh连上群晖nas后首先切换为root用户</p><div class="code-wrapper"><pre><code class="hljs bash">sudo -i</code></pre></div><p>进入/usr/local/bin/目录下载解压frp本体<br>我的机器是猫盘，采用arm架构的cpu，和群晖DS119J和DS120J一样，请去<a href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a>找到对应自己机器型号版本的下载地址，用**<strong>wget &lt;下载地址&gt;**</strong>来下载，如果连接性不佳，开启群晖上的代理设置，用电脑上的代理软件来连接，或者先把文件通过代理下载到本机，然后上传到群晖nas的/usr/local/bin目录下</p><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/binwget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_arm.tar.gztar -zxf frp_0.36.2_linux_arm.tar.gzcp ./frp_0.36.2_linux_arm/frpｃ ./chmod 755 frpc</code></pre></div><p>编辑frp配置文件，在上一步完成后输入<strong>vim /usr/local/bin/frpc.ini</strong>后按**”i”<strong>填入上面获取到的</strong>配置文件<strong>后按</strong>ESC键<strong>退出编辑，接着输入</strong>:wq**保存退出</p><p>接着要设置开机启动</p><div class="code-wrapper"><pre><code class="hljs bash">vim /etc/init/frpc.conf</code></pre></div><p>如果您按照本文档进行配置并使用了下面的内容，frpc 会在系统启动时自启并在出错时自动重启，无需额外配置</p><div class="code-wrapper"><pre><code class="hljs bash">description <span class="hljs-string">&quot;SakuraFrp synology frpc service&quot;</span>author <span class="hljs-string">&quot;FENGberd&quot;</span>start on syno.network.readystop on runlevel [016]respawnrespawn <span class="hljs-built_in">limit</span> 0 5<span class="hljs-built_in">exec</span> /usr/<span class="hljs-built_in">local</span>/bin/frpc　-c /usr/<span class="hljs-built_in">local</span>/bin/frpc.ini</code></pre></div><p>保存退出<br>最后删除一下多余的文件(<strong>rm -rf警告！！！</strong>)</p><div class="code-wrapper"><pre><code class="hljs bash">rm -f /usr/<span class="hljs-built_in">local</span>/bin/frp_0.36.2_linux_arm.tar.gz &amp;&amp; rm -rf /usr/<span class="hljs-built_in">local</span>/bin/frp_0.36.2_linux_arm</code></pre></div><h2 id="测试frp连接"><a href="#测试frp连接" class="headerlink" title="测试frp连接"></a>测试frp连接</h2><p>执行下面的命令测试 frpc 是否能正常运行</p><div class="code-wrapper"><pre><code class="hljs bash">start frpctail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log</code></pre></div><p>看到succeed字样就表示连接成功了，除此之外在sakurafrp控制面板的隧道列表里节点前面也会显示**[在线]**标识</p><h2 id="上传证书开启https"><a href="#上传证书开启https" class="headerlink" title="上传证书开启https"></a>上传证书开启https</h2><p>进入群晖<strong>控制面板-安全性-证书</strong>将你的域名证书导入，证书是哪里来的这里不再赘述了，阿里腾讯都有申请免费ssl证书的渠道。如果这里的域名将作为群晖后台的登录域名，就将它设置为默认证书<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/04.png"><br>这样就可以通过**https://&lt;你的域名&gt;**访问你的群晖nas了</p><h2 id="群晖反代nas内其他应用"><a href="#群晖反代nas内其他应用" class="headerlink" title="群晖反代nas内其他应用"></a>群晖反代nas内其他应用</h2><p>群晖提供这么方便的证书管理真实不用白不用啊，有些应用例如jellyfin有自己的证书管理，但有些应用提供的证书管理不是那么人性化，于是将证书统一交给群晖管理，还能通过反代加上sakurafrp来实现不用加上端口的访问。<br>这里拿qbittorrent来做例子，它的访问端口是9080，现在我想通过一个域名来访问，回到上面的新建节点的步骤，选择与前一隧道<strong>相同的服务器</strong>来建立隧道，本地端口填写9080<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/05.png"><br>创建后打开隧道配置文件，结构应该如下</p><div class="code-wrapper"><pre><code class="hljs bash">[common]......省略......[你的隧道名称]......省略......末尾</code></pre></div><p>这里仅需要将**[你的隧道名称]<strong>以及后面部分的配置文件添加到</strong>群晖nas<strong>的frpc配置文件的末尾就行了<br>通过</strong>vim /usr/local/bin/frpc.ini<strong>编辑文件</strong>:wq**保存退出，重启frpc并查看启动日志</p><div class="code-wrapper"><pre><code class="hljs bash">stop frpcstart frpctail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log</code></pre></div><p>回到群晖<strong>控制面板-应用程序门户-反向代理服务器</strong>新增按照如下配置<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/06.png"><br><strong>主机名</strong>处填你的域名，保存，再回到<strong>控制面板-安全性-证书</strong>导入此域名的证书<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/07.png"><br>点击配置，将你的服务切换成对应的证书即可。还是要记得将域名<strong>CNAME</strong>到sakurafrp的节点域名上，待解析生效后就能通过**https://&lt;你的域名&gt;**直接访问群晖中qbittorrent的webUI了<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/08.png"></p><p>加上了ssl后的小锁看的真舒服，不是吗🍋</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>日常</tag>
+      
+      <tag>群晖</tag>
+      
+      <tag>qbittorrent</tag>
+      
+      <tag>sakurafrp</tag>
+      
+      <tag>公网IP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>饥荒联机版专用服务器搭建全流程Windows-Linux</title>
+    <link href="/2021/03/25/dst/"/>
+    <url>/2021/03/25/dst/</url>
+    
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>开始玩饥荒到现在，搭建服务器已经是家常便饭了，往往是朋友们心血来潮，上午说集结，下午就开始联机，在中午不得不花一小时甚至更多的时间去网上扒配置文件和命令，这么一折腾兴致已去一半了，实在是难顶，这里把搭建过程全部记录下来，给自己做个笔记吧</p><h2 id="服务端安装"><a href="#服务端安装" class="headerlink" title="服务端安装"></a>服务端安装</h2><h3 id="for-Windows"><a href="#for-Windows" class="headerlink" title="for Windows"></a>for Windows</h3><h4 id="直接通过Steam客户端安装"><a href="#直接通过Steam客户端安装" class="headerlink" title="直接通过Steam客户端安装"></a>直接通过Steam客户端安装</h4><p>这没啥好说的，打开steam，在<strong>库</strong>的顶部下拉栏勾上<strong>工具</strong>，下载<strong>Don’t Starve Together Dedicated Server</strong> (当然前提是你账户里得有<strong>Don’t Strave Together</strong>游戏)</p><h4 id="SteamCMD安装"><a href="#SteamCMD安装" class="headerlink" title="SteamCMD安装"></a>SteamCMD安装</h4><p>下载SteamCMD:<a href="https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip">https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip</a><br>随便找个地方解压，我放在<strong>D:\tem</strong>下，然后在这个目录下打开<strong>powershell</strong>(CMD也ok啦)<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/01.png"><br>输入</p><div class="code-wrapper"><pre><code class="hljs bash">.\steamcmd</code></pre></div><p>等它跑完出现 <strong>steam&gt;</strong> 后再接着输入</p><div class="code-wrapper"><pre><code class="hljs bash">login anonymousforce_install_dir C:\path\to\directoryapp_update 343050 validate</code></pre></div><p><strong>force_install_dir</strong>后的路径设置自己想放饥荒联机服务端的位置，我这里就放在<strong>D:\tem\dst</strong>下了。当然，如果你不设置，它就会安装在**(你的SteamCMD存放目录)\steamapps\common**里面,敲回车等待服务端下载<br>等看到弹出 <strong>Success! App ‘343050’ fully installed.</strong> 就可以关掉窗口了</p><h3 id="for-Linux"><a href="#for-Linux" class="headerlink" title="for Linux"></a>for Linux</h3><p>linux最好使用<strong>Ubuntu</strong>，用<strong>Centos</strong>的话后面的依赖问题十分麻烦，这里默认大家都是用<strong>Ubuntu</strong><br><strong>root</strong>登陆你的服务器，添加一个用于启动饥荒联机服务端的用户并设置好密码</p><div class="code-wrapper"><pre><code class="hljs bash">adduser -m dst passwd dst</code></pre></div><p>这里开始要安装一些依赖，记得先<strong>update</strong>一下包管理器</p><div class="code-wrapper"><pre><code class="hljs bash">Ubuntu 32位sudo apt install libstdc++6 libgcc1 libcurl4-gnutls-dev screenUbuntu 64位sudo add-apt-repository multiversesudo dpkg --add-architecture i386sudo apt install libstdc++6:i386 libgcc1:i386 libcurl4-gnutls-dev:i386 screenCentOS 32位yum -y install glibc libstdc++ libcurl libcurl4-gnutls-dev screenCentOS 64位yum -y install glibc.i686 libstdc++.i686 libcurl.i686 libcurl4-gnutls-dev.i686 screen</code></pre></div><p>切换到dst用户</p><div class="code-wrapper"><pre><code class="hljs bash">su dst</code></pre></div><p>建一个文件夹来塞你的SteamCMD文件，我直接在用户目录下建steam文件夹，即**/home/dst/steam** 再通过SteamCMD下载饥荒联机服务端，和在Windows下几乎一样的方法，不再多赘述</p><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /home/dstmkdir steam<span class="hljs-built_in">cd</span> steamwget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gztar -xvzf steamcmd_linux.tar.gz./steamcmd.shlogin anonymousforce_install_dir /home/dst/steam/dstapp_update 343050 validatequit</code></pre></div><h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><p>饥荒的配置文件其实可以通过启动一次服务端来初始化后再手动更改，但是鉴于饥荒的地图和mod配置文件修改起来实在是有点繁琐，大部分人不想去通过一个文本文档来更改游戏里面的设置吧，想着就脑壳疼，最多最多改改地图种子了。这里就直接通过创建本地存档的方式来生成配置文件<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/02.png"><br><strong>这里的配置就是你最终的服务端配置</strong>(不手动改配置文件)把想要用的<strong>服务端</strong>mod都勾上，什么地上的、洞穴的配置都配好，确认无误后点击<strong>创建世界</strong>来生成存档，等到进入<strong>角色选择界面</strong>后就能退出来了。</p><p>在电脑的<em><em>文档\Klei\DoNotStarveTogether(一串数字)*</em> 下可以找到你刚才创建的存档</em>*Cluster_X<strong>，这里的X取决于刚才在饥荒客户端中创建存档时选择的位置，如果你之前没有存档，这里就是</strong>Cluster_1**，如果你不记得刚才是在哪个位置创建的，那就<br><strong>看文件夹创建的时间呗！！！！！！！！</strong></p><p>打开存档目录下的<strong>cluster.ini</strong> 这里可以改一下服务器的基本设置，</p><div class="code-wrapper"><pre><code class="hljs bash">[GAMEPLAY]game_mode = endlessmax_players = 6pvp = <span class="hljs-literal">false</span>pause_when_empty = <span class="hljs-literal">true</span>[NETWORK]server_port = 10999lan_only_cluster = <span class="hljs-literal">false</span>cluster_intention = cooperativecluster_password = cluster_description = cluster_name = ライザ的世界offline_cluster = <span class="hljs-literal">false</span>cluster_language = zh[MISC]console_enabled = <span class="hljs-literal">true</span>[SHARD]shard_enabled = <span class="hljs-literal">true</span>bind_ip = 127.0.0.1master_ip = 127.0.0.1master_port = 10888cluster_key = defaultPass</code></pre></div><p>我在原有的配置上在**[NETWORK]<strong>下加上了</strong>server_port = 10086<strong>来指定游戏的通讯端口，这其实无关紧要了，默认端口是10999，其他的配置文件可以自行去文末的</strong>Don’t Starve Wiki<strong>上折腾吧，修改完后保存<br>紧接着打开客户端进行如下操作(<strong>多图警告！！</strong>)<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/05.png"><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/06.png"><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/07.png"><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/08.png"><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/09.png"><br>将得到的token复制一下，打开</strong>cluster_token.txt**替换掉原来的内容，保存</p><h3 id="可选配置"><a href="#可选配置" class="headerlink" title="可选配置"></a>可选配置</h3><ul><li>  <strong>管理员</strong></li><li>  <strong>Ban用户</strong></li><li>  <strong>白名单</strong></li></ul><p>这些都不在本文介绍范围内，我们就是几个基友耍耍下线，重要的是建立服务器的效率，速建速玩！如果想要更详细的信息可以去这位大佬的博文看看，是本文主要参考的文章之一:<a href="http://blog.ttionya.com/article-1235.html">http://blog.ttionya.com/article-1235.html</a><br>最后，当你完成了所有配置文件的更改，<strong>请确保所有配置文件的编码方式都为UTF-8</strong>否则配置文件可能不生效<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/04.png"><br>这样子存档文件夹<strong>Cluster_1</strong>就完成了，可以先找个地方放起来，我这里把它改个名字<strong>Pixel</strong>，后面就都用<strong>Pixel</strong>啦</p><h2 id="拷贝配置文件到服务端并启动"><a href="#拷贝配置文件到服务端并启动" class="headerlink" title="拷贝配置文件到服务端并启动"></a>拷贝配置文件到服务端并启动</h2><h3 id="for-Windows-1"><a href="#for-Windows-1" class="headerlink" title="for Windows"></a>for Windows</h3><p><strong>右键编辑D:\tem\dst\bin\scripts</strong>(自行换成自己的目录，Steam客户端安装服务端的同理)下的<strong>launch_preconfigured_servers.bat</strong>文件</p><div class="code-wrapper"><pre><code class="hljs bash">@ECHO OFF<span class="hljs-built_in">set</span> SteamAppId=322330<span class="hljs-built_in">set</span> SteamGameId=322330<span class="hljs-built_in">cd</span> ..start <span class="hljs-string">&quot;Don&#x27;t Starve Together Overworld&quot;</span> /D <span class="hljs-string">&quot;%~dp0..&quot;</span> <span class="hljs-string">&quot;%~dp0..\dontstarve_dedicated_server_nullrenderer.exe&quot;</span> -conf_dir DoNotStarveTogether_EasyConfigOverworld -consolestart <span class="hljs-string">&quot;Don&#x27;t Starve Together Caves&quot;</span>     /D <span class="hljs-string">&quot;%~dp0..&quot;</span> <span class="hljs-string">&quot;%~dp0..\dontstarve_dedicated_server_nullrenderer.exe&quot;</span> -conf_dir DoNotStarveTogether_EasyConfigCaves -console</code></pre></div><p>我们需要修改一些东西，在上面的两个**-conf_dir<strong>之后的目录需要改成我们配置文件存放的目录，当然也可以直接把配置文件挪过去，把</strong>Pixel<strong>文件夹拷贝到</strong>文档\Klei<em>***DoNotStarveTogether**目录下，更改</em>*launch_preconfigured_servers.bat**的内容，更改后：</p><div class="code-wrapper"><pre><code class="hljs bash">@ECHO OFF<span class="hljs-built_in">set</span> SteamAppId=322330<span class="hljs-built_in">set</span> SteamGameId=322330<span class="hljs-built_in">cd</span> ..start <span class="hljs-string">&quot;Don&#x27;t Starve Together Overworld&quot;</span> /D <span class="hljs-string">&quot;%~dp0..&quot;</span> <span class="hljs-string">&quot;%~dp0..\dontstarve_dedicated_server_nullrenderer.exe&quot;</span> -cluster Pixel -console -shard Masterstart <span class="hljs-string">&quot;Don&#x27;t Starve Together Caves&quot;</span>     /D <span class="hljs-string">&quot;%~dp0..&quot;</span> <span class="hljs-string">&quot;%~dp0..\dontstarve_dedicated_server_nullrenderer.exe&quot;</span> -cluster Pixel -console -shard Caves</code></pre></div><p>上面**-cluster<strong>之后就是我们的</strong>Pixel<strong>文件夹<br>弄完以后双击</strong>launch_preconfigured_servers.bat**就能启动了</p><h3 id="for-Linux-1"><a href="#for-Linux-1" class="headerlink" title="for Linux"></a>for Linux</h3><p>准备一个地方放置你的存档，我放在**/home/dst/dstsave**目录下，</p><div class="code-wrapper"><pre><code class="hljs bash">mkdir /home/dst/dstsave</code></pre></div><p>cd到你的饥荒服务端安装目录的bin目录下，我的目录是**/home/dst/steam/steamapps/common/Don’t Starve Together Dedicated Server/bin** 说来奇怪，之前的目录修改貌似没有生效，转在了默认路径，总之你找到你的安装路径就行了，在使用cd的时候，如果文件夹有空格，这一整个文件夹名字要用双引号括起来，例如<strong>cd /home/dst/steam/steamapps/common/“Don’t Starve Together Dedicated Server”/bin</strong><br>然后输入下面指令来创建启动脚本（Pixel是存档文件夹的名字，下一步需要放在之前创建的**/home/dst/dstsave**目录下，根据需要自行修改）</p><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /home/dst/steam/steamapps/common/<span class="hljs-string">&quot;Don&#x27;t Starve Together Dedicated Server&quot;</span>/bin<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;./dontstarve_dedicated_server_nullrenderer -console -persistent_storage_root /home/dst/dstsave -conf_dir Pixel -cluster Master -shard Master&quot;</span> &gt; master_start.sh<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;./dontstarve_dedicated_server_nullrenderer -console -persistent_storage_root /home/dst/dstsave -conf_dir Pixel -cluster Caves -shard Caves&quot;</span> &gt; cave_start.shchmod +x master_start.sh cave_start.sh</code></pre></div><p>接下来把之前创建的<strong>Pixel</strong>配置文件夹拷贝到**/home/dst/dstsave**下就行了，拷贝完成后就只剩下开服喽！</p><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /home/dst/steam/steamapps/common/<span class="hljs-string">&quot;Don&#x27;t Starve Together Dedicated Server&quot;</span>/binscreen -S master./master_start.sh<span class="hljs-comment">###按下Ctrl+A然后再按下Ctrl+D让screen后台运行</span>screen -S cave./cave_start.sh<span class="hljs-comment">###先Ctrl+A然后再按下Ctrl+D</span></code></pre></div><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul><li>  天天の記事簿 - <a href="http://blog.ttionya.com/article-1235.html">去看看！</a></li><li>  CSDN@Eagle昊 - <a href="https://blog.csdn.net/zhang41228/article/details/103106298">去看看！</a></li><li>  DST Wiki - <a href="http://dont-starve-game.wikia.com/wiki/Guides/Don%E2%80%99t_Starve_Together_Dedicated_Servers">去看看！</a></li><li>  SteamCMD Wiki - <a href="https://developer.valvesoftware.com/wiki/SteamCMD">去看看！</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>日常</tag>
+      
+      <tag>DST</tag>
+      
+      <tag>linux</tag>
+      
+      <tag>windows</tag>
+      
+      <tag>饥荒</tag>
+      
+      <tag>饥荒联机服务器</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>网站同时部署阿里云CDN和Cloudflare加速实现全球加速</title>
+    <link href="/2020/12/13/cdn/"/>
+    <url>/2020/12/13/cdn/</url>
+    
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>借助Cloudflare的CNAME接入方式实现不用DNS接入就使用CF的CDN，CF在境外还是相当好用的，免费套餐个人使用的话完全够用了.</p><h2 id="境内阿里云CDN"><a href="#境内阿里云CDN" class="headerlink" title="境内阿里云CDN"></a>境内阿里云CDN</h2><p>阿里云原本就是CNAME方式使用，将域名解析<strong>默认</strong>线路解析到阿里云加速给的CNAME地址<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/3.png"><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/6.png"></p><h2 id="境外Cloudflare"><a href="#境外Cloudflare" class="headerlink" title="境外Cloudflare"></a>境外Cloudflare</h2><h3 id="绑定笨牛"><a href="#绑定笨牛" class="headerlink" title="绑定笨牛"></a>绑定笨牛</h3><p>首先进入笨牛，绑定你的CF账号</p><ul><li>  <a href="https://cdn.bnxb.com/"><strong>https://cdn.bnxb.com/</strong></a></li></ul><p>回笨牛主页<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/4.png"><br>域名接入-添加域名</p><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul><li>  笨牛一天只能接入一个域名</li><li>  Freenom系的免费域名(.tk,.cf,.ml,.ga之类的)已经不支持IP回源且不支持修改记录，因此如需添加这类免费域名，请选CNAME回源并一次性设置好需要的子域名，不然后续将无法修改记录</li></ul><p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/2.png"><br>填写你的域名信息，这里的回源信息就填<strong>你要套CDN的网站</strong>所在服务器的信息，ip回源或者CNAME回源<br>回到笨牛的域名列表，如果成功添加了域名的话你会看到一个CNAME接入的域名，点进去切换到<strong>域名解析</strong><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/9.png"><br>在下方会看到一个提示让你把域名解析到一个CNAME地址******.cdn.cloudflare.net<strong>，这就是你的CF的CNAME接入地址了<br>到此在笨牛的操作就结束了，回到你的域名托管商新加添加一条CNAME解析<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/7.png"><br>线路选择境外，地址填之前在笨牛看到的</strong>****.cdn.cloudflare.net**</p><h2 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h2><p>等待<strong>解析设置后生效后</strong>使用多地ping</p><ul><li>  <a href="http://ping.chinaz.com/"><strong>http://ping.chinaz.com/</strong></a></li></ul><p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/8.png"><br>可以看到境内返回的是阿里的CDN节点ip，境外返回的是CF的节点ip</p><h2 id="What-if？"><a href="#What-if？" class="headerlink" title="What if？"></a>What if？</h2><p>在笨牛的域名解析界面可以看到除了给了CNAME的地址外还给出了一些ip，这些ip都是Cloudflare的节点服务器ip，只要把域名解析到其中任何一个上，你在CF的域名解析和CDN都会生效，而且流量走的就是你所解析的这个ip，CF的ip有很多，可以A记录到固定ip来实现手动优选CF加速节点<br>根据当前网络环境优选CF节点的脚本(十分好用)</p><ul><li>  <a href="https://github.com/badafans/better-cloudflare-ip">https://github.com/badafans/better-cloudflare-ip</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CDN</tag>
+      
+      <tag>Cloudflare</tag>
+      
+      <tag>CNAME</tag>
+      
+      <tag>日常</tag>
+      
+      <tag>阿里云</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>用Goindex索引Google Drive文件</title>
+    <link href="/2020/09/28/googledrive/"/>
+    <url>/2020/09/28/googledrive/</url>
+    
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>Goindex是一个github上的开源项目，可以索引你的Google Drive里的文件并且提供直链下载，因为它可以部署在免费的Cloudflare Workers上所以并不需要准备服务器，在Goindex上下载文件流量走的是Cf所以不需要科学上网就能取回在墙外的Google Drive里的文件，同时还能在线播放视频音频，全程没有任何消费，真香.<br>项目地址：<a href="https://github.com/Aicirou/goindex-theme-acrou">https://github.com/Aicirou/goindex-theme-acrou</a></p><h2 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h2><ul><li>  Googel Drive账号</li><li>  Cloudflare账号</li><li>  科学上网环境</li></ul><h2 id="获得部署代码"><a href="#获得部署代码" class="headerlink" title="获得部署代码"></a>获得部署代码</h2><p>1.打开项目中提供的三个网站之一</p><ul><li>  <a href="https://install.achirou.workers.dev/">https://install.achirou.workers.dev</a></li><li>  <a href="https://goindex-quick-install.glitch.me/">https://goindex-quick-install.glitch.me</a></li><li>  <a href="https://goindex-install.herokuapp.com/">https://goindex-install.herokuapp.com</a></li></ul><p>2.点击Click me登入自己的谷歌账号<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/e270d0fed682f.png"><br>3.复制它给你的代码粘贴到刚才网页的Authorization Code一栏里<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/60a02fecf01fe.png"><br>Drive ID这一栏填的是你想要索引的Google Drive目录的ID，这个ID就是你进入Google Drive目录后浏览器url中/drive/folders/后面的一串代码,想要全盘索引这里的Drive ID填root或者留空<br>后面的用户名和密码留空就是不对索引的目录加密，我这里留空.<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/8444f48f28471.png"><br>4.点击Get Code等待网站生成代码<br>(如果加载时间过长就换一个网站重复2-4步)</p><h2 id="将代码部署到Cloudflare-Workers上"><a href="#将代码部署到Cloudflare-Workers上" class="headerlink" title="将代码部署到Cloudflare Workers上"></a>将代码部署到Cloudflare Workers上</h2><p>1.进入 <a href="https://www.cloudflare.com/">Cloudflare官网</a>，打开Workers界面创建一个worker<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/89b66eb674410.png"><br>2.先把左边的内容清空再粘贴之前获得的代码，保存并部署<br>到此为止就能访问搭建好的goindex了</p><h2 id="使用自己的域名"><a href="#使用自己的域名" class="headerlink" title="使用自己的域名"></a>使用自己的域名</h2><p>cloudflare提供的域名比较复杂，不方便记忆，如果自己有域名的话可以使用自己的域名<br>首先要将域名从原来的托管商取出托管到cloudflare下<br>到cloudflare首页点击添加站点<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/be079f62f9a60.png"><br>输入自己的域名后选择免费计划<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/adc5b724e5728.png"><br>根据提示将原名称服务器修改为cloudflare的名称服务器</p><p>假如baidu.com是你的域名，你想使用test.baidu.com这个地址作为你的worker地址，就在DNS管理里面新增一条A记录，名称填二级域名test，指向的ip地址随意填写<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/8262e96aeda81.png"><br>进入workers，点击添加路由<br><img src="6869411145a83.png"><br>填上 你的域名/* 例如test.baidu.com/*<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/3fc1540b252f8.png"><br>选择绑定刚才建立的worker</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul><li>  免费</li><li>  高带宽(指cloudflare流量)</li><li>  不过墙</li></ul><h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><ul><li>  Google Drive每天10T的流量限额</li><li>  免费Wokers每天10万次请求</li></ul><p>对个人来说这些限制都是过剩的了，不用考虑随便用.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Cloudflare Workers</tag>
+      
+      <tag>Goindex</tag>
+      
+      <tag>Google Drive</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>网易云音乐UWP旧版</title>
+    <link href="/2020/06/02/netease/"/>
+    <url>/2020/06/02/netease/</url>
+    
+    <content type="html"><![CDATA[<h2 id="不要更新UWP版网易云音乐！"><a href="#不要更新UWP版网易云音乐！" class="headerlink" title="不要更新UWP版网易云音乐！"></a>不要更新UWP版网易云音乐！</h2><p>2020年5月29号以后，安装Microsoft Store里面的网易云音乐uwp都将会安装win32网易云音乐的转置版，相信不止我一个人比较喜欢UWP版的扁平化风格，而且Win32版云音乐系统资源的占用会比uwp版大，十分拉跨</p><p>Win32转置版:<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/1/5bba48cebb751.png" alt="win32"><br>原UWP版:<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/1/6b057f6dd9955.png" alt="uwp"> </p><p>已经安装了新版的朋友可以直接下载旧版UWP安装包来进行本地安装回滚到老版本:<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/1/ffd2032d4b637.png"><br>这里附上原UWP1.4.1.0版的安装包:</p><p><a href="https://pan.baidu.com/s/18Uce3hjgK-9sSD1rmxjBnA">https://pan.baidu.com/s/18Uce3hjgK-9sSD1rmxjBnA</a><br>提取码: icey</p><p>没有云盘会员的朋友可以去<br><a href="https://lanzous.com/id42mgh">https://lanzoux.com/id42mgh</a></p><p>装完后记得关闭 Microsoft Store 的自动更新:<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/1/5704654136dca.png"><br>最后还是希望网易云不要放弃原uwp版的开发.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>日常</tag>
+      
+      <tag>网易云UWP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

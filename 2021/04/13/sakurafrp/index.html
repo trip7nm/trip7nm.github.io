@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Ryza">
+  <meta name="keywords" content="">
+  
+  <title>没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https - 冰牛奶</title>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.icemilk.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"1b1e00957a49cd2ef5541b893b26d4c0","google":"UA-203450696-1","gtag":280992526,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>冰牛奶</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/hexo/bg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-13 00:00" pubdate>
+        2021年4月13日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https</h1>
+            
+            <div class="markdown-body">
+              <p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/00.png" srcset="/img/loading.gif" lazyload><br>sakurafrp提供免费的内网穿透服务，它们的服务器大多都在国内，延迟十分优秀，免费用户最多拥有5条10mbps的隧道，每月流量有5Gb上限，但是可以通过签到获取大量流量(每天获得3Gb左右)，流量超出后不会停用隧道而是进入限速4mbps的限速模式。作为个人使用访问家中设备的隧道，免费用户已经完全能满足需求了，更详细的流量规则请去它的官网看看吧<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/01.png" srcset="/img/loading.gif" lazyload><br>首先呢你要有</p>
+<ul>
+<li>  一个sakurafrp的账号，去<a target="_blank" rel="noopener" href="https://www.natfrp.com/">这里</a>注册</li>
+<li>  一个<strong>已备案</strong>的域名，或<strong>未备案</strong>的域名(使用高延迟的非中国大陆节点)</li>
+<li>  你的群晖nas<h2 id="获取frpc配置文件"><a href="#获取frpc配置文件" class="headerlink" title="获取frpc配置文件"></a>获取frpc配置文件</h2>登录Sakurafrp控制台转到创建隧道<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/02.png" srcset="/img/loading.gif" lazyload><br>上面的穿透节点按需选择，我们需要选择<strong>可建站</strong>的节点来进行穿透，隧道选择<strong>https隧道</strong>，如果使用<strong>tcp</strong>协议代理，那么访问域名的时候需要加上端口，不方便也不美观。本地端口请填写<strong>你的群晖nas</strong>中设置的https访问端口，默认端口是5001(如果你没有改过的话)，绑定域名处填写你自己的域名就好了</li>
+</ul>
+<p>回到隧道列表，点击刚才创建隧道的<strong>配置文件</strong><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/03.png" srcset="/img/loading.gif" lazyload><br>这个框里面的就是我们要的<strong>配置文件</strong>了，暂时搁置，后面会用到，还有别忘了将你的域名<strong>CNAME</strong>到这个节点域名上</p>
+<h2 id="安装frpc"><a href="#安装frpc" class="headerlink" title="安装frpc"></a>安装frpc</h2><p>ssh连上群晖nas后首先切换为root用户</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo -i</code></pre></div>
+<p>进入/usr/local/bin/目录下载解压frp本体<br>我的机器是猫盘，采用arm架构的cpu，和群晖DS119J和DS120J一样，请去<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a>找到对应自己机器型号版本的下载地址，用**<strong>wget &lt;下载地址&gt;**</strong>来下载，如果连接性不佳，开启群晖上的代理设置，用电脑上的代理软件来连接，或者先把文件通过代理下载到本机，然后上传到群晖nas的/usr/local/bin目录下</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/bin
+wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_arm.tar.gz
+tar -zxf frp_0.36.2_linux_arm.tar.gz
+cp ./frp_0.36.2_linux_arm/frpｃ ./
+chmod 755 frpc</code></pre></div>
+<p>编辑frp配置文件，在上一步完成后输入<strong>vim /usr/local/bin/frpc.ini</strong>后按**”i”<strong>填入上面获取到的</strong>配置文件<strong>后按</strong>ESC键<strong>退出编辑，接着输入</strong>:wq**保存退出</p>
+<p>接着要设置开机启动</p>
+<div class="code-wrapper"><pre><code class="hljs bash">vim /etc/init/frpc.conf</code></pre></div>
+<p>如果您按照本文档进行配置并使用了下面的内容，frpc 会在系统启动时自启并在出错时自动重启，无需额外配置</p>
+<div class="code-wrapper"><pre><code class="hljs bash">description <span class="hljs-string">&quot;SakuraFrp synology frpc service&quot;</span>
+
+author <span class="hljs-string">&quot;FENGberd&quot;</span>
+
+start on syno.network.ready
+stop on runlevel [016]
+
+respawn
+respawn <span class="hljs-built_in">limit</span> 0 5
+
+<span class="hljs-built_in">exec</span> /usr/<span class="hljs-built_in">local</span>/bin/frpc　-c /usr/<span class="hljs-built_in">local</span>/bin/frpc.ini</code></pre></div>
+<p>保存退出<br>最后删除一下多余的文件(<strong>rm -rf警告！！！</strong>)</p>
+<div class="code-wrapper"><pre><code class="hljs bash">rm -f /usr/<span class="hljs-built_in">local</span>/bin/frp_0.36.2_linux_arm.tar.gz &amp;&amp; rm -rf /usr/<span class="hljs-built_in">local</span>/bin/frp_0.36.2_linux_arm</code></pre></div>
+<h2 id="测试frp连接"><a href="#测试frp连接" class="headerlink" title="测试frp连接"></a>测试frp连接</h2><p>执行下面的命令测试 frpc 是否能正常运行</p>
+<div class="code-wrapper"><pre><code class="hljs bash">start frpc
+tail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log</code></pre></div>
+<p>看到succeed字样就表示连接成功了，除此之外在sakurafrp控制面板的隧道列表里节点前面也会显示**[在线]**标识</p>
+<h2 id="上传证书开启https"><a href="#上传证书开启https" class="headerlink" title="上传证书开启https"></a>上传证书开启https</h2><p>进入群晖<strong>控制面板-安全性-证书</strong>将你的域名证书导入，证书是哪里来的这里不再赘述了，阿里腾讯都有申请免费ssl证书的渠道。如果这里的域名将作为群晖后台的登录域名，就将它设置为默认证书<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/04.png" srcset="/img/loading.gif" lazyload><br>这样就可以通过**https://&lt;你的域名&gt;**访问你的群晖nas了</p>
+<h2 id="群晖反代nas内其他应用"><a href="#群晖反代nas内其他应用" class="headerlink" title="群晖反代nas内其他应用"></a>群晖反代nas内其他应用</h2><p>群晖提供这么方便的证书管理真实不用白不用啊，有些应用例如jellyfin有自己的证书管理，但有些应用提供的证书管理不是那么人性化，于是将证书统一交给群晖管理，还能通过反代加上sakurafrp来实现不用加上端口的访问。<br>这里拿qbittorrent来做例子，它的访问端口是9080，现在我想通过一个域名来访问，回到上面的新建节点的步骤，选择与前一隧道<strong>相同的服务器</strong>来建立隧道，本地端口填写9080<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/05.png" srcset="/img/loading.gif" lazyload><br>创建后打开隧道配置文件，结构应该如下</p>
+<div class="code-wrapper"><pre><code class="hljs bash">[common]
+......省略......
+[你的隧道名称]
+
+......省略......
+末尾</code></pre></div>
+<p>这里仅需要将**[你的隧道名称]<strong>以及后面部分的配置文件添加到</strong>群晖nas<strong>的frpc配置文件的末尾就行了<br>通过</strong>vim /usr/local/bin/frpc.ini<strong>编辑文件</strong>:wq**保存退出，重启frpc并查看启动日志</p>
+<div class="code-wrapper"><pre><code class="hljs bash">stop frpc
+start frpc
+tail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log</code></pre></div>
+<p>回到群晖<strong>控制面板-应用程序门户-反向代理服务器</strong>新增按照如下配置<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/06.png" srcset="/img/loading.gif" lazyload><br><strong>主机名</strong>处填你的域名，保存，再回到<strong>控制面板-安全性-证书</strong>导入此域名的证书<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/07.png" srcset="/img/loading.gif" lazyload><br>点击配置，将你的服务切换成对应的证书即可。还是要记得将域名<strong>CNAME</strong>到sakurafrp的节点域名上，待解析生效后就能通过**https://&lt;你的域名&gt;**直接访问群晖中qbittorrent的webUI了<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/08.png" srcset="/img/loading.gif" lazyload></p>
+<p>加上了ssl后的小锁看的真舒服，不是吗🍋</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%97%A5%E5%B8%B8/">日常</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BE%A4%E6%99%96/">群晖</a>
+                    
+                      <a class="hover-with-bg" href="/tags/qbittorrent/">qbittorrent</a>
+                    
+                      <a class="hover-with-bg" href="/tags/sakurafrp/">sakurafrp</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%85%AC%E7%BD%91IP/">公网IP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/09/n1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">N1盒子Docker挂载群晖NFS共享目录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/25/dst/">
+                        <span class="hidden-mobile">饥荒联机版专用服务器搭建全流程Windows-Linux</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"hvIBBm9d61DebO5eGPQ6dw4T-MdYXbMMI","appKey":"GBiuPC2rt1fH2yjMG9mWMDzl","placeholder":"喵喵喵~~~","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     			 <img src="https://loli.ryza.ml/get/@ihicey?theme=rule34" srcset="/img/loading.gif" lazyload/><br/> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1b1e00957a49cd2ef5541b893b26d4c0";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-203450696-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=280992526"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '280992526');
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+</body>
+</html>
