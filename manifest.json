@@ -1,1 +1,1 @@
-{"name":"icemilk-Blog","short_name":"icemilk","theme_color":"#2196f3","background_color":"#2196f3","display":"fullscreen","orientation":"portrait","Scope":"/","start_url":"/","icons":[{"src":"img/icons/icon-144x144.png","sizes":"144x144","type":"image/png"}],"splash_pages":null}
+{"name":"icemilk-Blog","short_name":"icemilk","theme_color":"#2196f3","background_color":"#2196f3","display":"standalone","orientation":"portrait","Scope":"/","start_url":"/","icons":[{"src":"img/icons/icon-144x144.png","sizes":"144x144","type":"image/png"}],"splash_pages":null}
