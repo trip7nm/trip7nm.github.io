@@ -206,9 +206,7 @@
           
             
           
-          写在前面通过注册微软E5账号来获得5T的OneDrive for Business储存空间并通过API调用维持账号活跃度增加续订成功率，再用Cloudreve挂载实现白嫖5T永久?高速网盘   
-
-            虽然有了自动续订方案，但成功率也不是100%，相较于教育邮箱开通的账号，至少E5不会突然猝死，一个订阅周期是90天，如果账号在尝试续订时失败仍有时间转移数据，可以当作文件分享和不
+          通过注册微软E5账号并用Cloudreve索引来获得5T免费不限速网盘
         </a>
       </p>
 
@@ -233,15 +231,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Docker/">Docker</a>
-            
               <a href="/tags/E5%E7%BB%AD%E8%AE%A2/">E5续订</a>
             
               <a href="/tags/Cloudreve/">Cloudreve</a>
             
               <a href="/tags/%E7%BD%91%E7%9B%98/">网盘</a>
-            
-              <a href="/tags/5T/">5T</a>
             
           </div>
         
@@ -266,8 +260,7 @@
           
             
           
-          始于emby一开始的emby跑在猫盘群晖上，但猫盘本来就跑了qb来挂pt，再跑emby还是挺吃力的，故转移到n1上，数据储存还是用猫盘，于是通过网络映射猫盘NFS共享目录，让猫盘只承担文件传输的负载。
-群晖开启nfs群晖控制面板-&gt;文件服务，把NFS和启用NFSv4.1支持都勾上，应用控制面板-&gt;共享文件夹，选你要映射的文件夹，编辑-&gt;NFS权限，新增，如下图填写其中 服务器名称
+          使用docker的磁盘创建功能连接群晖的nfs共享目录
         </a>
       </p>
 
@@ -293,8 +286,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Docker/">Docker</a>
-            
-              <a href="/tags/%E6%97%A5%E5%B8%B8/">日常</a>
             
               <a href="/tags/N1%E7%9B%92%E5%AD%90/">N1盒子</a>
             
@@ -325,9 +316,7 @@
           
             
           
-          sakurafrp提供免费的内网穿透服务，它们的服务器大多都在国内，延迟十分优秀，免费用户最多拥有5条10mbps的隧道，每月流量有5Gb上限，但是可以通过签到获取大量流量(每天获得3Gb左右)，流量超出后不会停用隧道而是进入限速4mbps的限速模式。作为个人使用访问家中设备的隧道，免费用户已经完全能满足需求了，更详细的流量规则请去它的官网看看吧首先呢你要有
-
-  一个sakurafrp的账号，去
+          用免费内网穿透工具Sakurafrp实现远程访问家中群晖NAS及qbittorrent
         </a>
       </p>
 
@@ -352,15 +341,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%97%A5%E5%B8%B8/">日常</a>
-            
               <a href="/tags/%E7%BE%A4%E6%99%96/">群晖</a>
             
               <a href="/tags/qbittorrent/">qbittorrent</a>
             
               <a href="/tags/sakurafrp/">sakurafrp</a>
-            
-              <a href="/tags/%E5%85%AC%E7%BD%91IP/">公网IP</a>
             
           </div>
         
@@ -411,13 +396,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%97%A5%E5%B8%B8/">日常</a>
-            
               <a href="/tags/DST/">DST</a>
-            
-              <a href="/tags/linux/">linux</a>
-            
-              <a href="/tags/windows/">windows</a>
             
               <a href="/tags/%E9%A5%A5%E8%8D%92/">饥荒</a>
             
@@ -446,14 +425,7 @@
           
             
           
-          写在前面借助Cloudflare的CNAME接入方式实现不用DNS接入就使用CF的CDN，CF在境外还是相当好用的，免费套餐个人使用的话完全够用了.
-境内阿里云CDN阿里云原本就是CNAME方式使用，将域名解析默认线路解析到阿里云加速给的CNAME地址
-境外Cloudflare绑定笨牛首先进入笨牛，绑定你的CF账号
-
-  https://cdn.bnxb.com/
-
-回笨牛主页域名接入-添加域名
-
+          借助CDN的CNAME接入方式区分国内外访问所使用的CDN
         </a>
       </p>
 
@@ -482,10 +454,6 @@
             
               <a href="/tags/Cloudflare/">Cloudflare</a>
             
-              <a href="/tags/CNAME/">CNAME</a>
-            
-              <a href="/tags/%E6%97%A5%E5%B8%B8/">日常</a>
-            
               <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
             
           </div>
@@ -511,7 +479,7 @@
           
             
           
-          写在前面Goindex是一个github上的开源项目，可以索引你的Google Drive里的文件并且提供直链下载，因为它可以部署在免费的Cloudflare Workers上所以并不需要准备服务器，在Goindex上下载文件流量走的是Cf所以不需要科学上网就能取回在墙外的Google Drive里的文件，同时还能在线播放视频音频，全程没有任何消费，真香.项目地址：https://github.c
+          用Goindex来实现不过墙访问Google Drive文件
         </a>
       </p>
 
@@ -536,7 +504,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Cloudflare-Workers/">Cloudflare Workers</a>
+              <a href="/tags/Cloudflare/">Cloudflare</a>
             
               <a href="/tags/Goindex/">Goindex</a>
             
@@ -565,9 +533,7 @@
           
             
           
-          不要更新UWP版网易云音乐！2020年5月29号以后，安装Microsoft Store里面的网易云音乐uwp都将会安装win32网易云音乐的转置版，相信不止我一个人比较喜欢UWP版的扁平化风格，而且Win32版云音乐系统资源的占用会比uwp版大，十分拉跨
-Win32转置版:原UWP版: 
-已经安装了新版的朋友可以直接下载旧版UWP安装包来进行本地安装回滚到老版本:这里附上原UWP1.4.1.0版
+          退回安装旧版网易云UWP版
         </a>
       </p>
 
