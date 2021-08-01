@@ -17,11 +17,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="借助CDN的CNAME接入方式区分国内外访问所使用的CDN">
+  <meta name="description" content="用Goindex来实现不过墙访问Google Drive文件">
   <meta name="author" content="Ryza">
-  <meta name="keywords" content="CDN,Cloudflare,CNAME,日常,阿里云">
+  <meta name="keywords" content="Cloudflare Workers,Goindex,Google Drive">
   
-  <title>网站同时部署阿里云CDN和Cloudflare加速实现全球加速 - 冰牛奶</title>
+  <title>用Goindex索引Google Drive文件 - 冰牛奶</title>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="网站同时部署阿里云CDN和Cloudflare加速实现全球加速">
+            <span class="h2" id="subtitle" title="用Goindex索引Google Drive文件">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-12-13 00:00" pubdate>
-        2020年12月13日 凌晨
+      <time datetime="2020-09-28 00:00" pubdate>
+        2020年9月28日 凌晨
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      561 字
+      640 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      7
        分钟
     </span>
   
@@ -246,30 +246,35 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">网站同时部署阿里云CDN和Cloudflare加速实现全球加速</h1>
+            <h1 style="display: none">用Goindex索引Google Drive文件</h1>
             
             <div class="markdown-body">
-              <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>借助Cloudflare的CNAME接入方式实现不用DNS接入就使用CF的CDN，CF在境外还是相当好用的，免费套餐个人使用的话完全够用了.</p>
-<h2 id="境内阿里云CDN"><a href="#境内阿里云CDN" class="headerlink" title="境内阿里云CDN"></a>境内阿里云CDN</h2><p>阿里云原本就是CNAME方式使用，将域名解析<strong>默认</strong>线路解析到阿里云加速给的CNAME地址<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/3.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/6.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="境外Cloudflare"><a href="#境外Cloudflare" class="headerlink" title="境外Cloudflare"></a>境外Cloudflare</h2><h3 id="绑定笨牛"><a href="#绑定笨牛" class="headerlink" title="绑定笨牛"></a>绑定笨牛</h3><p>首先进入笨牛，绑定你的CF账号</p>
+              <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>Goindex是一个github上的开源项目，可以索引你的Google Drive里的文件并且提供直链下载，因为它可以部署在免费的Cloudflare Workers上所以并不需要准备服务器，在Goindex上下载文件流量走的是Cf所以不需要科学上网就能取回在墙外的Google Drive里的文件，同时还能在线播放视频音频，全程没有任何消费，真香.<br>项目地址：<a target="_blank" rel="noopener" href="https://github.com/Aicirou/goindex-theme-acrou">https://github.com/Aicirou/goindex-theme-acrou</a></p>
+<h2 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h2><ul>
+<li>  Googel Drive账号</li>
+<li>  Cloudflare账号</li>
+<li>  科学上网环境</li>
+</ul>
+<h2 id="获得部署代码"><a href="#获得部署代码" class="headerlink" title="获得部署代码"></a>获得部署代码</h2><p>1.打开项目中提供的三个网站之一</p>
 <ul>
-<li>  <a target="_blank" rel="noopener" href="https://cdn.bnxb.com/"><strong>https://cdn.bnxb.com/</strong></a></li>
+<li>  <a target="_blank" rel="noopener" href="https://install.achirou.workers.dev/">https://install.achirou.workers.dev</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://goindex-quick-install.glitch.me/">https://goindex-quick-install.glitch.me</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://goindex-install.herokuapp.com/">https://goindex-install.herokuapp.com</a></li>
 </ul>
-<p>回笨牛主页<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/4.png" srcset="/img/loading.gif" lazyload><br>域名接入-添加域名</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
-<li>  笨牛一天只能接入一个域名</li>
-<li>  Freenom系的免费域名(.tk,.cf,.ml,.ga之类的)已经不支持IP回源且不支持修改记录，因此如需添加这类免费域名，请选CNAME回源并一次性设置好需要的子域名，不然后续将无法修改记录</li>
+<p>2.点击Click me登入自己的谷歌账号<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/e270d0fed682f.png" srcset="/img/loading.gif" lazyload><br>3.复制它给你的代码粘贴到刚才网页的Authorization Code一栏里<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/60a02fecf01fe.png" srcset="/img/loading.gif" lazyload><br>Drive ID这一栏填的是你想要索引的Google Drive目录的ID，这个ID就是你进入Google Drive目录后浏览器url中/drive/folders/后面的一串代码,想要全盘索引这里的Drive ID填root或者留空<br>后面的用户名和密码留空就是不对索引的目录加密，我这里留空.<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/8444f48f28471.png" srcset="/img/loading.gif" lazyload><br>4.点击Get Code等待网站生成代码<br>(如果加载时间过长就换一个网站重复2-4步)</p>
+<h2 id="将代码部署到Cloudflare-Workers上"><a href="#将代码部署到Cloudflare-Workers上" class="headerlink" title="将代码部署到Cloudflare Workers上"></a>将代码部署到Cloudflare Workers上</h2><p>1.进入 <a target="_blank" rel="noopener" href="https://www.cloudflare.com/">Cloudflare官网</a>，打开Workers界面创建一个worker<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/89b66eb674410.png" srcset="/img/loading.gif" lazyload><br>2.先把左边的内容清空再粘贴之前获得的代码，保存并部署<br>到此为止就能访问搭建好的goindex了</p>
+<h2 id="使用自己的域名"><a href="#使用自己的域名" class="headerlink" title="使用自己的域名"></a>使用自己的域名</h2><p>cloudflare提供的域名比较复杂，不方便记忆，如果自己有域名的话可以使用自己的域名<br>首先要将域名从原来的托管商取出托管到cloudflare下<br>到cloudflare首页点击添加站点<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/be079f62f9a60.png" srcset="/img/loading.gif" lazyload><br>输入自己的域名后选择免费计划<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/adc5b724e5728.png" srcset="/img/loading.gif" lazyload><br>根据提示将原名称服务器修改为cloudflare的名称服务器</p>
+<p>假如baidu.com是你的域名，你想使用test.baidu.com这个地址作为你的worker地址，就在DNS管理里面新增一条A记录，名称填二级域名test，指向的ip地址随意填写<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/8262e96aeda81.png" srcset="/img/loading.gif" lazyload><br>进入workers，点击添加路由<br><img src="6869411145a83.png" srcset="/img/loading.gif" lazyload><br>填上 你的域名/* 例如test.baidu.com/*<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/2/3fc1540b252f8.png" srcset="/img/loading.gif" lazyload><br>选择绑定刚才建立的worker</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>  免费</li>
+<li>  高带宽(指cloudflare流量)</li>
+<li>  不过墙</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/2.png" srcset="/img/loading.gif" lazyload><br>填写你的域名信息，这里的回源信息就填<strong>你要套CDN的网站</strong>所在服务器的信息，ip回源或者CNAME回源<br>回到笨牛的域名列表，如果成功添加了域名的话你会看到一个CNAME接入的域名，点进去切换到<strong>域名解析</strong><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/9.png" srcset="/img/loading.gif" lazyload><br>在下方会看到一个提示让你把域名解析到一个CNAME地址******.cdn.cloudflare.net<strong>，这就是你的CF的CNAME接入地址了<br>到此在笨牛的操作就结束了，回到你的域名托管商新加添加一条CNAME解析<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/7.png" srcset="/img/loading.gif" lazyload><br>线路选择境外，地址填之前在笨牛看到的</strong>****.cdn.cloudflare.net**</p>
-<h2 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h2><p>等待<strong>解析设置后生效后</strong>使用多地ping</p>
-<ul>
-<li>  <a target="_blank" rel="noopener" href="http://ping.chinaz.com/"><strong>http://ping.chinaz.com/</strong></a></li>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><ul>
+<li>  Google Drive每天10T的流量限额</li>
+<li>  免费Wokers每天10万次请求</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/3/8.png" srcset="/img/loading.gif" lazyload><br>可以看到境内返回的是阿里的CDN节点ip，境外返回的是CF的节点ip</p>
-<h2 id="What-if？"><a href="#What-if？" class="headerlink" title="What if？"></a>What if？</h2><p>在笨牛的域名解析界面可以看到除了给了CNAME的地址外还给出了一些ip，这些ip都是Cloudflare的节点服务器ip，只要把域名解析到其中任何一个上，你在CF的域名解析和CDN都会生效，而且流量走的就是你所解析的这个ip，CF的ip有很多，可以A记录到固定ip来实现手动优选CF加速节点<br>根据当前网络环境优选CF节点的脚本(十分好用)</p>
-<ul>
-<li>  <a target="_blank" rel="noopener" href="https://github.com/badafans/better-cloudflare-ip">https://github.com/badafans/better-cloudflare-ip</a></li>
-</ul>
+<p>对个人来说这些限制都是过剩的了，不用考虑随便用.</p>
 
             </div>
             <hr>
@@ -279,7 +284,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+                      <a class="hover-with-bg" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>
                     
                   </div>
                 
@@ -287,11 +292,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/CDN/">CDN</a>
-                    
                       <a class="hover-with-bg" href="/tags/Cloudflare/">Cloudflare</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
+                      <a class="hover-with-bg" href="/tags/Goindex/">Goindex</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Google-Drive/">Google Drive</a>
                     
                   </div>
                 
@@ -308,9 +313,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/25/dst/">
+                      <a href="/archives/a43ef6ce.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">饥荒联机版专用服务器搭建全流程Windows-Linux</span>
+                        <span class="hidden-mobile">网站同时部署阿里云CDN和Cloudflare加速实现全球加速</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -318,8 +323,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/28/googledrive/">
-                        <span class="hidden-mobile">用Goindex索引Google Drive文件</span>
+                      <a href="/archives/f62935f1.html">
+                        <span class="hidden-mobile">网易云音乐UWP旧版</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

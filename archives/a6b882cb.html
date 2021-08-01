@@ -17,11 +17,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="通过注册微软E5账号并用Cloudreve索引来获得5T免费不限速网盘">
+  <meta name="description" content="使用docker的磁盘创建功能连接群晖的nfs共享目录">
   <meta name="author" content="Ryza">
-  <meta name="keywords" content="E5续订,Cloudreve,网盘,5T">
+  <meta name="keywords" content="Docker,N1盒子,NFS,群晖">
   
-  <title>白嫖微软超大5T不限速网盘教程 - 冰牛奶</title>
+  <title>N1盒子Docker挂载群晖NFS共享目录 - 冰牛奶</title>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="白嫖微软超大5T不限速网盘教程">
+            <span class="h2" id="subtitle" title="N1盒子Docker挂载群晖NFS共享目录">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-31 13:00" pubdate>
-        2021年7月31日 下午
+      <time datetime="2021-07-09 00:00" pubdate>
+        2021年7月9日 凌晨
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      836 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      11
        分钟
     </span>
   
@@ -246,94 +246,63 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">白嫖微软超大5T不限速网盘教程</h1>
+            <h1 style="display: none">N1盒子Docker挂载群晖NFS共享目录</h1>
             
             <div class="markdown-body">
-              <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>通过注册微软E5账号来获得5T的<strong>OneDrive for Business</strong>储存空间并通过API调用维持账号活跃度增加续订成功率，再用<strong>Cloudreve</strong>挂载实现白嫖5T永久?高速网盘   </p>
-<div class="note note-warning">
-            <p>虽然有了自动续订方案，但成功率也不是100%，相较于教育邮箱开通的账号，至少E5不会突然猝死，一个订阅周期是90天，如果账号在尝试续订时失败仍有时间转移数据，可以当作文件分享和不重要的大文件转存使用，不建议当作数据归档盘使用(归档放某度不香吗?)</p>
-          </div>
-<h2 id="展示"><a href="#展示" class="headerlink" title="展示"></a>展示</h2><p>先来看看成品是什么样的吧<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731131632.png" srcset="/img/loading.gif" lazyload><br>这里的5T容量来自Onedrive for Business(非国内的世纪互联),速度不是非常稳定，可是这个可是零成本啊，要什么自行车，当作分享文件的暂存盘简直不要太合适。  </p>
-<ul>
-<li><strong>湖北移动300M单线程速度测试</strong><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/test.png" srcset="/img/loading.gif" lazyload>    </li>
-</ul>
-<p>网络环境不同，下载速度可能有比较大的差异    </p>
-<p>测试文件:<a target="_blank" rel="noopener" href="https://loli.icemilk.top/s/BYcb">test.test</a></p>
-<h2 id="搭建Cloudreve"><a href="#搭建Cloudreve" class="headerlink" title="搭建Cloudreve"></a>搭建Cloudreve</h2><p><a target="_blank" rel="noopener" href="https://github.com/cloudreve/Cloudreve">项目地址</a> • <a target="_blank" rel="noopener" href="https://docs.cloudreve.org/">手册地址</a></p>
-<p>如何搭建在原项目手册里面已经非常详细地展现了，这里就不展开了  </p>
-<div class="note note-info">
-            <ul><li>需要一台云服务器</li><li>上传下载流量不走服务器</li><li>关于反向代理，如果用了宝塔面板，可以不用去动<strong>nginx</strong>的配置文件，直接在网站设置的反向代理里填写代理的本地地址即可<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731133547.png" srcset="/img/loading.gif" lazyload>  </li></ul>
-          </div> 
-<h3 id="流量"><a href="#流量" class="headerlink" title="流量"></a>流量</h3><ul>
-<li><p>不经过<strong>Cloudreve</strong>所在服务器的流量:  </p>
-<div class="note note-success">
-            <ul><li>上传/下载操作</li><li>WebDAV连接后的上传/下载操作</li><li>下载分享的文件</li><li>在线预览</li></ul>
-          </div></li>
-<li><p>经过<strong>Cloudreve</strong>所在服务器的流量: </p>
-<div class="note note-danger">
-            <ul><li>在线解压缩</li><li>离线下载</li></ul>
-          </div>
-<h2 id="微软E5开发者账号申请"><a href="#微软E5开发者账号申请" class="headerlink" title="微软E5开发者账号申请"></a>微软E5开发者账号申请</h2></li>
-<li><p>先进入<a target="_blank" rel="noopener" href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">微软开发者中心</a>点击<span class="label label-info">立即加入</span>，这个时候会让你登录，用自己平常使用的账号登录就好  </p>
-</li>
-<li><p> 填写基本信息，国家<strong>China</strong>会影响你的OneDrive及其他服务的地理位置，后续信息继续填完<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731135005.png" srcset="/img/loading.gif" lazyload>   </p>
-</li>
-<li><p>上一个表填完后会转跳到开发者页面，点击中间的<span class="label label-info">设置E5订阅</span>，按需填写<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731135634.png" srcset="/img/loading.gif" lazyload> </p>
-</li>
-<li><p> 最后验证手机号**(记得404上网)**  </p>
-</li>
-</ul>
-<p>默认的OneDrive空间只有1T，进入<a target="_blank" rel="noopener" href="https://admin.onedrive.com/?v=StorageSettings">OneDrive管理中心</a>，会提示已经迁移，等他自动转跳到<strong>SharePoint管理中心</strong>将<span class="label label-info">储存空间上限</span>改为5T<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731141033.png" srcset="/img/loading.gif" lazyload> </p>
-<h2 id="Cloudreve挂载OneDrive"><a href="#Cloudreve挂载OneDrive" class="headerlink" title="Cloudreve挂载OneDrive"></a>Cloudreve挂载OneDrive</h2><p>打开<strong>Cloudreve</strong>进入<span class="label label-info">储存策略</span>(右上角头像进入管理面板)，添加新的储存策略，按照提示一步一步操作即可  </p>
-<div class="note note-warning">
-            <ul><li><strong>Azure</strong>登录的账号<strong>不是</strong>你自己的微软账号了，而是刚才注册的E5账号<strong><a href="mailto:&#120;&#120;&#x78;&#x40;&#x78;&#x78;&#x78;&#46;&#x6f;&#x6e;&#x6d;&#x69;&#99;&#x72;&#x6f;&#x73;&#x6f;&#x66;&#x74;&#x2e;&#x63;&#111;&#109;">&#120;&#120;&#x78;&#x40;&#x78;&#x78;&#x78;&#46;&#x6f;&#x6e;&#x6d;&#x69;&#99;&#x72;&#x6f;&#x73;&#x6f;&#x66;&#x74;&#x2e;&#x63;&#111;&#109;</a></strong></li><li><strong>Cloudreve</strong>设置里面的账号类型选择<strong>国际版</strong></li><li>储存策略添加后要把账号组默认策略改一下才能生效</li></ul>
-          </div>
+              <h2 id="始于emby"><a href="#始于emby" class="headerlink" title="始于emby"></a>始于emby</h2><p>一开始的emby跑在猫盘群晖上，但猫盘本来就跑了qb来挂pt，再跑emby还是挺吃力的，故转移到n1上，数据储存还是用猫盘，于是通过网络映射猫盘NFS共享目录，让猫盘只承担文件传输的负载。</p>
+<h2 id="群晖开启nfs"><a href="#群晖开启nfs" class="headerlink" title="群晖开启nfs"></a>群晖开启nfs</h2><p>群晖控制面板-&gt;文件服务，把NFS和启用NFSv4.1支持都勾上，应用<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/01.png" srcset="/img/loading.gif" lazyload><br>控制面板-&gt;共享文件夹，选你要映射的文件夹，编辑-&gt;NFS权限，新增，如下图填写<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/02.png" srcset="/img/loading.gif" lazyload><br>其中 <strong>服务器名称或IP地址</strong> 填你要赋予映射权限的 <strong>设备ip/网段</strong> ，或者直接用通配符 ***** 表示忽略来源限制，所有能连上来的设备都可以映射，反正局域网无所畏惧(<strong>误</strong>)。注意 <strong>Squash</strong> 一定要选<strong>映射所有用户为admin</strong> 不然没权限。</p>
+<h2 id="创建Docker-Volume"><a href="#创建Docker-Volume" class="headerlink" title="创建Docker Volume"></a>创建Docker Volume</h2><p>使用docker创建驱动类型为nfs4的磁盘volume-nfs，并指定该nfs的ip，共享目录的权限，以及共享目录</p>
+<div class="code-wrapper"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker volume create --driver local \</span>
+--opt <span class="hljs-built_in">type</span>=nfs4 --opt o=addr=192.168.6.99,rw \
+--opt device=:/volume1/catdrive volume-nfs
 
-<h2 id="E5续订"><a href="#E5续订" class="headerlink" title="E5续订"></a>E5续订</h2><h3 id="应用注册"><a href="#应用注册" class="headerlink" title="应用注册"></a>应用注册</h3><ul>
-<li>打开<a target="_blank" rel="noopener" href="https://portal.azure.com/#home">Azure面板</a>，用刚才的E5账号登录  </li>
-<li>登录完成后点击右上角的<span class="label label-info">门户</span>按钮进入Azure管理中心，在搜索栏内输入<span class="label label-info">应用注册</span>，点击进入</li>
-<li>上一步如果找不到<a target="_blank" rel="noopener" href="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade">点此直接进入</a><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731143534.png" srcset="/img/loading.gif" lazyload>  </li>
-<li>单击<span class="label label-info">新注册</span>按钮  </li>
-<li><span class="label label-info">配置应用</span>应用名称随意写，注意<span class="label label-info">可访问性选项</span>选择最后一项<span class="label label-info">重定向URL</span>暂时不填，完成后点击<span class="label label-info">注册</span>  
-<img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731143804.png" srcset="/img/loading.gif" lazyload>  </li>
-</ul>
-<h3 id="配置应用重定向URL-身份验证"><a href="#配置应用重定向URL-身份验证" class="headerlink" title="配置应用重定向URL(身份验证)"></a>配置应用重定向URL(身份验证)</h3><ul>
-<li>先点击<span class="label label-info">概述</span>然后点击<span class="label label-info">添加重定向URL</span>进入重定向URL配置界面，下图中的<span class="label label-info">应用程序(客户端)ID</span>即为<strong>客户端ID</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="应用程序 ID  
-">[1]</span></a></sup><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731144003.png" srcset="/img/loading.gif" lazyload></li>
-<li>点击<span class="label label-info">添加平台</span>，再点击<span class="label label-info">移动和桌面应用程序</span><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731144146.png" srcset="/img/loading.gif" lazyload>  </li>
-<li>继续勾选中第一个URL，最后点击底部的<span class="label label-info">配置</span>，该URL为<span class="label label-info">https://login.microsoftonline.com/common/oauth2/nativeclient</span>，也可手动添加<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731144210.png" srcset="/img/loading.gif" lazyload></li>
-<li>配置默认客户端类型将应用程序视为公共客户端 点击切换按钮为<strong>是</strong> ，最后点击<span class="label label-info">保存</span>按钮保存<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731144233.png" srcset="/img/loading.gif" lazyload> </li>
-</ul>
-<h3 id="配置应用程序的API权限"><a href="#配置应用程序的API权限" class="headerlink" title="配置应用程序的API权限"></a>配置应用程序的API权限</h3><ul>
-<li>点击<span class="label label-info">API权限</span>-<span class="label label-info">添加权限</span>-<span class="label label-info">Microsoft Graph</span><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150151.png" srcset="/img/loading.gif" lazyload> </li>
-<li>选择<span class="label label-info">委托的权限</span><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150203.png" srcset="/img/loading.gif" lazyload> </li>
-<li>下面列出的API权限需求表<strong>依次勾选</strong>  <div class="note note-primary">
-            <p>登录调用（API权限可使用PC版程序自动配置）<br>BookingsAppointment.ReadWrite.All; Calendars.Read; Contacts.Read; Directory.Read.All;<br>Files.Read.All; Files.ReadWrite.All; Group.Read.All; Mail.Read; Mail.Send; MailboxSettings.Read;<br>Notes.Read.All; People.Read.All; Presence.Read.All; Sites.Read.All; Tasks.ReadWrite; User.Read.All;</p>
-          </div></li>
-<li>最后点击<span class="label label-info">添加权限</span><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150229.png" srcset="/img/loading.gif" lazyload><br>添加完成的效果如图,如果没有<span class="label label-info">代表XXX授予管理员同意</span>按钮 说明该账号不是管理员账号 换登管理员账号创建应用<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150243.png" srcset="/img/loading.gif" lazyload> </li>
-<li>最后点击<span class="label label-info">代表XXX授予管理员同意</span>,对话框选择<strong>是</strong>  </li>
-</ul>
-<div class="note note-primary">
-            <p>该图包含了当前程序委托的权限(用户登录)全部API所需要的权限<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731150303.png" srcset="/img/loading.gif" lazyload> </p>
-          </div>
+<span class="hljs-comment"># 参数解释</span>
+--driver , -d    <span class="hljs-built_in">local</span>    <span class="hljs-comment"># 指定卷驱动程序名称，local为默认</span>
+--name        <span class="hljs-comment"># 指定卷名</span>
+--opt , -o    <span class="hljs-comment"># 设置驱动程序特定选项</span>
+addr=         <span class="hljs-comment"># 群晖Nas的ip</span>
+device=       <span class="hljs-comment"># 后面是群晖的目录，也就是你给了nfs权限的那个共享文件夹目录</span></code></pre></div>
+<p>查看创建好的volume</p>
+<div class="code-wrapper"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker volume ls</span>
+DRIVER              VOLUME NAME
+<span class="hljs-built_in">local</span>               volume-nfs</code></pre></div>
+<p>查看该volume的信息</p>
+<div class="code-wrapper"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker volume inspect volume-nfs</span>
+[
+    &#123;
+        <span class="hljs-string">&quot;CreatedAt&quot;</span>: <span class="hljs-string">&quot;2021-07-08T14:16:38+08:00&quot;</span>,
+        <span class="hljs-string">&quot;Driver&quot;</span>: <span class="hljs-string">&quot;local&quot;</span>,
+        <span class="hljs-string">&quot;Labels&quot;</span>: &#123;&#125;,
+        <span class="hljs-string">&quot;Mountpoint&quot;</span>: <span class="hljs-string">&quot;/mnt/mmcblk2p3/docker/volumes/volume-nfs/_data&quot;</span>,
 
-<h3 id="将账号API调用托管至服务"><a href="#将账号API调用托管至服务" class="headerlink" title="将账号API调用托管至服务"></a>将账号API调用托管至服务</h3><ul>
-<li>下列网站任选一个进入，用<span class="label label-info">Microsoft</span>或者<span class="label label-info">Github</span>登录，点击<span class="label label-info">编辑配置</span>  </li>
-</ul>
-<div class="note note-primary">
-            <ul><li><a target="_blank" rel="noopener" href="https://e5.sundayrx.net/">https://e5.sundayrx.net</a></li><li><a target="_blank" rel="noopener" href="https://ms-e5-renew.leeskyler.top:11015/">https://ms-e5-renew.leeskyler.top:11015</a></li><li><a target="_blank" rel="noopener" href="https://ms-e5-renew-2.eastern.moe/">https://ms-e5-renew-2.eastern.moe</a></li></ul>
-          </div>  
+        <span class="hljs-comment"># volume-fs的挂载点</span>
+        <span class="hljs-string">&quot;Name&quot;</span>: <span class="hljs-string">&quot;volume-nfs&quot;</span>,
+        <span class="hljs-string">&quot;Options&quot;</span>: &#123;
+            <span class="hljs-string">&quot;device&quot;</span>: <span class="hljs-string">&quot;:/volume1/catdrive&quot;</span>, <span class="hljs-comment"># nfs共享目录</span>
+            <span class="hljs-string">&quot;o&quot;</span>: <span class="hljs-string">&quot;addr=192.168.6.99,rw&quot;</span>, <span class="hljs-comment"># nfs服务器地址</span>
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;nfs4&quot;</span> <span class="hljs-comment"># 驱动类型</span>
+        &#125;,
+        <span class="hljs-string">&quot;Scope&quot;</span>: <span class="hljs-string">&quot;local&quot;</span>
+    &#125;
+]</code></pre></div>
+<p>于是在建立容器的时候就可以用 -v来使用这个nfs卷了，以我的emby服务为例，我想把这个卷挂到/neko文件夹下，建立embyserver代码就应该是</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -d \
+--name emby \
+--restart=always \
+-v volume-nfs:/neko \   <span class="hljs-comment">#ここ，就是这个</span>
+--network host \
+--env UID=1000 \
+--env GID=100 \
+emby/embyserver_arm64v8:4.6.0.3</code></pre></div>
+<p>进入容器里面看看</p>
+<div class="code-wrapper"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker exec -it emby /bin/sh</span>
+/ <span class="hljs-comment"># ls</span>
+bin       dev       home      lib       licenses  proc      sys       tmp       var
+config    etc       init      libexec   neko      root      system    usr</code></pre></div>
+<p>可以看见neko文件夹已经出来了，可以作为emby的媒体库使用了。<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/03.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>一开始用的是N1-openwrt自带的cifs/smb映射工具把群晖的目录映射在N1的文件系统里，再用docker映射这个目录，但是没有成功，容器一直无法启动。还有一种方法是在容器内部直接用mount指令挂载，只要赋予了**–privileged=true**参数，是可以成功挂载上的，但是如何在docker启动时自动运行挂载命令挺麻烦，搁置<br>后来看到了这位大佬的文章<br><a target="_blank" rel="noopener" href="https://www.feiyiblog.com/2020/03/31/Docker%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8-%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/">https://www.feiyiblog.com/2020/03/31/Docker%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8-%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/</a><br>于是模仿得出了目前的解决方案，本文核心内容均来自于此。<br>关于Docker的问题，也可以看看这个帖子<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013072756/article/details/108987173">https://blog.csdn.net/u013072756/article/details/108987173</a></p>
+<p>このまま！</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731160700.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>填写下表<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/E5/20210731160939.png" srcset="/img/loading.gif" lazyload>  </li>
-</ul>
-<div class="note note-info">
-            <ul><li>账号密码填写你的<strong>E5账号</strong>密码  </li><li><strong>应用程序 ID</strong>为之前创建应用时给的客户端id，具体位置请看后面跳转</li><li>API调用方式选择<strong>登录调用</strong></li></ul>
-          </div>
-<p>没有意外的话E5续订程序就会自动执行了</p>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><strong>应用程序 ID</strong>
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
             <div>
@@ -350,11 +319,13 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/E5%E7%BB%AD%E8%AE%A2/">E5续订</a>
+                      <a class="hover-with-bg" href="/tags/Docker/">Docker</a>
                     
-                      <a class="hover-with-bg" href="/tags/Cloudreve/">Cloudreve</a>
+                      <a class="hover-with-bg" href="/tags/N1%E7%9B%92%E5%AD%90/">N1盒子</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%BD%91%E7%9B%98/">网盘</a>
+                      <a class="hover-with-bg" href="/tags/NFS/">NFS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BE%A4%E6%99%96/">群晖</a>
                     
                   </div>
                 
@@ -371,12 +342,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/archives/e074f02e.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">白嫖微软超大5T不限速网盘教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/09/n1/">
-                        <span class="hidden-mobile">N1盒子Docker挂载群晖NFS共享目录</span>
+                      <a href="/archives/a1635f0b.html">
+                        <span class="hidden-mobile">没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
