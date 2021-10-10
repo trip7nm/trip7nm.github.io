@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      1.8k 字
     </span>
   
 
@@ -257,7 +257,7 @@
 <div class="code-wrapper"><pre><code class="hljs bash">login anonymous
 force_install_dir C:\path\to\directory
 app_update 343050 validate</code></pre></div>
-<p><strong>force_install_dir</strong>后的路径设置自己想放饥荒联机服务端的位置，我这里就放在<strong>D:\tem\dst</strong>下了。当然，如果你不设置，它就会安装在**(你的SteamCMD存放目录)\steamapps\common**里面,敲回车等待服务端下载<br>等看到弹出 <strong>Success! App ‘343050’ fully installed.</strong> 就可以关掉窗口了</p>
+<p><strong>force_install_dir</strong>后的路径设置自己想放饥荒联机服务端的位置，我这里就放在<strong>D:\tem\dst</strong>下了。当然，如果你不设置，它就会安装在(你的SteamCMD存放目录)\steamapps\common里面,敲回车等待服务端下载<br>等看到弹出 <strong>Success! App ‘343050’ fully installed.</strong> 就可以关掉窗口了</p>
 <h3 id="for-Linux"><a href="#for-Linux" class="headerlink" title="for Linux"></a>for Linux</h3><p>linux最好使用<strong>Ubuntu</strong>，用<strong>Centos</strong>的话后面的依赖问题十分麻烦，这里默认大家都是用<strong>Ubuntu</strong><br><strong>root</strong>登陆你的服务器，添加一个用于启动饥荒联机服务端的用户并设置好密码</p>
 <div class="code-wrapper"><pre><code class="hljs bash">adduser -m dst 
 passwd dst</code></pre></div>
@@ -274,7 +274,7 @@ CentOS 64位
 yum -y install glibc.i686 libstdc++.i686 libcurl.i686 libcurl4-gnutls-dev.i686 screen</code></pre></div>
 <p>切换到dst用户</p>
 <div class="code-wrapper"><pre><code class="hljs bash">su dst</code></pre></div>
-<p>建一个文件夹来塞你的SteamCMD文件，我直接在用户目录下建steam文件夹，即**/home/dst/steam** 再通过SteamCMD下载饥荒联机服务端，和在Windows下几乎一样的方法，不再多赘述</p>
+<p>建一个文件夹来塞你的SteamCMD文件，我直接在用户目录下建steam文件夹，即/home/dst/steam 再通过SteamCMD下载饥荒联机服务端，和在Windows下几乎一样的方法，不再多赘述</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /home/dst
 mkdir steam
 <span class="hljs-built_in">cd</span> steam
@@ -285,8 +285,8 @@ login anonymous
 force_install_dir /home/dst/steam/dst
 app_update 343050 validate
 quit</code></pre></div>
-<h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><p>饥荒的配置文件其实可以通过启动一次服务端来初始化后再手动更改，但是鉴于饥荒的地图和mod配置文件修改起来实在是有点繁琐，大部分人不想去通过一个文本文档来更改游戏里面的设置吧，想着就脑壳疼，最多最多改改地图种子了。这里就直接通过创建本地存档的方式来生成配置文件<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/02.png" srcset="/img/loading.gif" lazyload><br><strong>这里的配置就是你最终的服务端配置</strong>(不手动改配置文件)把想要用的<strong>服务端</strong>mod都勾上，什么地上的、洞穴的配置都配好，确认无误后点击<strong>创建世界</strong>来生成存档，等到进入<strong>角色选择界面</strong>后就能退出来了。</p>
-<p>在电脑的<em><em>文档\Klei\DoNotStarveTogether(一串数字)*</em> 下可以找到你刚才创建的存档</em>*Cluster_X<strong>，这里的X取决于刚才在饥荒客户端中创建存档时选择的位置，如果你之前没有存档，这里就是</strong>Cluster_1**，如果你不记得刚才是在哪个位置创建的，那就<br><strong>看文件夹创建的时间呗！！！！！！！！</strong></p>
+<h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><p>饥荒的配置文件其实可以通过启动一次服务端来初始化后再手动更改，但是鉴于饥荒的地图和mod配置文件修改起来实在是有点繁琐，大部分人不想去通过一个文本文档来更改游戏里面的设置吧，想着就脑壳疼，最多最多改改地图种子了。这里就直接通过创建本地存档的方式来生成配置文件<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/02.png" srcset="/img/loading.gif" lazyload><br>这里的配置就是你最终的服务端配置(不手动改配置文件)把想要用的服务端mod都勾上，地上的、洞穴的配置都配好，确认无误后点击<strong>创建世界</strong>来生成存档，等到进入<strong>角色选择界面</strong>后就能退出来了。</p>
+<p>在电脑的文档\Klei\DoNotStarveTogether(一串数字)\ 下可以找到你刚才创建的存档<strong>Cluster_X</strong>，这里的X取决于刚才在饥荒客户端中创建存档时选择的位置，如果你之前没有存档，这里就是<strong>Cluster_1</strong></p>
 <p>打开存档目录下的<strong>cluster.ini</strong> 这里可以改一下服务器的基本设置，</p>
 <div class="code-wrapper"><pre><code class="hljs bash">[GAMEPLAY]
 game_mode = endless
@@ -313,14 +313,14 @@ bind_ip = 127.0.0.1
 master_ip = 127.0.0.1
 master_port = 10888
 cluster_key = defaultPass</code></pre></div>
-<p>我在原有的配置上在**[NETWORK]<strong>下加上了</strong>server_port = 10086<strong>来指定游戏的通讯端口，这其实无关紧要了，默认端口是10999，其他的配置文件可以自行去文末的</strong>Don’t Starve Wiki<strong>上折腾吧，修改完后保存<br>紧接着打开客户端进行如下操作(<strong>多图警告！！</strong>)<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/05.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/06.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/07.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/08.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/09.png" srcset="/img/loading.gif" lazyload><br>将得到的token复制一下，打开</strong>cluster_token.txt**替换掉原来的内容，保存</p>
+<p>我在原有的配置上在[NETWORK]下加上了server_port = 10086来指定游戏的通讯端口，这其实无关紧要了，默认端口是10999，其他的配置文件可以自行去文末的Don’t Starve Wiki上折腾吧，修改完后保存<br>紧接着打开客户端进行如下操作(<strong>多图警告！！</strong>)<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/05.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/06.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/07.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/08.png" srcset="/img/loading.gif" lazyload><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/09.png" srcset="/img/loading.gif" lazyload><br>将得到的token复制一下，打开cluster_token.txt替换掉原来的内容，保存</p>
 <h3 id="可选配置"><a href="#可选配置" class="headerlink" title="可选配置"></a>可选配置</h3><ul>
 <li>  <strong>管理员</strong></li>
 <li>  <strong>Ban用户</strong></li>
 <li>  <strong>白名单</strong></li>
 </ul>
 <p>这些都不在本文介绍范围内，我们就是几个基友耍耍下线，重要的是建立服务器的效率，速建速玩！如果想要更详细的信息可以去这位大佬的博文看看，是本文主要参考的文章之一:<a target="_blank" rel="noopener" href="http://blog.ttionya.com/article-1235.html">http://blog.ttionya.com/article-1235.html</a><br>最后，当你完成了所有配置文件的更改，<strong>请确保所有配置文件的编码方式都为UTF-8</strong>否则配置文件可能不生效<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/dst/04.png" srcset="/img/loading.gif" lazyload><br>这样子存档文件夹<strong>Cluster_1</strong>就完成了，可以先找个地方放起来，我这里把它改个名字<strong>Pixel</strong>，后面就都用<strong>Pixel</strong>啦</p>
-<h2 id="拷贝配置文件到服务端并启动"><a href="#拷贝配置文件到服务端并启动" class="headerlink" title="拷贝配置文件到服务端并启动"></a>拷贝配置文件到服务端并启动</h2><h3 id="for-Windows-1"><a href="#for-Windows-1" class="headerlink" title="for Windows"></a>for Windows</h3><p><strong>右键编辑D:\tem\dst\bin\scripts</strong>(自行换成自己的目录，Steam客户端安装服务端的同理)下的<strong>launch_preconfigured_servers.bat</strong>文件</p>
+<h2 id="拷贝配置文件到服务端并启动"><a href="#拷贝配置文件到服务端并启动" class="headerlink" title="拷贝配置文件到服务端并启动"></a>拷贝配置文件到服务端并启动</h2><h3 id="for-Windows-1"><a href="#for-Windows-1" class="headerlink" title="for Windows"></a>for Windows</h3><p>**右键编辑D:\tem\dst\bin\scripts(自行换成自己的目录，Steam客户端安装服务端的同理)下的launch_preconfigured_servers.bat文件</p>
 <div class="code-wrapper"><pre><code class="hljs bash">@ECHO OFF
 
 <span class="hljs-built_in">set</span> SteamAppId=322330
@@ -329,7 +329,7 @@ cluster_key = defaultPass</code></pre></div>
 <span class="hljs-built_in">cd</span> ..
 start <span class="hljs-string">&quot;Don&#x27;t Starve Together Overworld&quot;</span> /D <span class="hljs-string">&quot;%~dp0..&quot;</span> <span class="hljs-string">&quot;%~dp0..\dontstarve_dedicated_server_nullrenderer.exe&quot;</span> -conf_dir DoNotStarveTogether_EasyConfigOverworld -console
 start <span class="hljs-string">&quot;Don&#x27;t Starve Together Caves&quot;</span>     /D <span class="hljs-string">&quot;%~dp0..&quot;</span> <span class="hljs-string">&quot;%~dp0..\dontstarve_dedicated_server_nullrenderer.exe&quot;</span> -conf_dir DoNotStarveTogether_EasyConfigCaves -console</code></pre></div>
-<p>我们需要修改一些东西，在上面的两个**-conf_dir<strong>之后的目录需要改成我们配置文件存放的目录，当然也可以直接把配置文件挪过去，把</strong>Pixel<strong>文件夹拷贝到</strong>文档\Klei<em>***DoNotStarveTogether**目录下，更改</em>*launch_preconfigured_servers.bat**的内容，更改后：</p>
+<p>我们需要修改一些东西，在上面的两个-conf_dir之后的目录需要改成我们配置文件存放的目录，当然也可以直接把配置文件挪过去，把Pixel文件夹拷贝到文档\Klei\DoNotStarveTogether目录下，更改launch_preconfigured_servers.bat的内容，更改后：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">@ECHO OFF
 
 <span class="hljs-built_in">set</span> SteamAppId=322330
@@ -338,15 +338,15 @@ start <span class="hljs-string">&quot;Don&#x27;t Starve Together Caves&quot;</sp
 <span class="hljs-built_in">cd</span> ..
 start <span class="hljs-string">&quot;Don&#x27;t Starve Together Overworld&quot;</span> /D <span class="hljs-string">&quot;%~dp0..&quot;</span> <span class="hljs-string">&quot;%~dp0..\dontstarve_dedicated_server_nullrenderer.exe&quot;</span> -cluster Pixel -console -shard Master
 start <span class="hljs-string">&quot;Don&#x27;t Starve Together Caves&quot;</span>     /D <span class="hljs-string">&quot;%~dp0..&quot;</span> <span class="hljs-string">&quot;%~dp0..\dontstarve_dedicated_server_nullrenderer.exe&quot;</span> -cluster Pixel -console -shard Caves</code></pre></div>
-<p>上面**-cluster<strong>之后就是我们的</strong>Pixel<strong>文件夹<br>弄完以后双击</strong>launch_preconfigured_servers.bat**就能启动了</p>
-<h3 id="for-Linux-1"><a href="#for-Linux-1" class="headerlink" title="for Linux"></a>for Linux</h3><p>准备一个地方放置你的存档，我放在**/home/dst/dstsave**目录下，</p>
+<p>上面-cluster之后就是我们的Pixel文件夹<br>弄完以后双击launch_preconfigured_servers.bat就能启动了</p>
+<h3 id="for-Linux-1"><a href="#for-Linux-1" class="headerlink" title="for Linux"></a>for Linux</h3><p>准备一个地方放置你的存档，我放在/home/dst/dstsave目录下，</p>
 <div class="code-wrapper"><pre><code class="hljs bash">mkdir /home/dst/dstsave</code></pre></div>
-<p>cd到你的饥荒服务端安装目录的bin目录下，我的目录是**/home/dst/steam/steamapps/common/Don’t Starve Together Dedicated Server/bin** 说来奇怪，之前的目录修改貌似没有生效，转在了默认路径，总之你找到你的安装路径就行了，在使用cd的时候，如果文件夹有空格，这一整个文件夹名字要用双引号括起来，例如<strong>cd /home/dst/steam/steamapps/common/“Don’t Starve Together Dedicated Server”/bin</strong><br>然后输入下面指令来创建启动脚本（Pixel是存档文件夹的名字，下一步需要放在之前创建的**/home/dst/dstsave**目录下，根据需要自行修改）</p>
+<p>cd到你的饥荒服务端安装目录的bin目录下，我的目录是/home/dst/steam/steamapps/common/Don’t Starve Together Dedicated Server/bin 说来奇怪，之前的目录修改貌似没有生效，转在了默认路径，总之你找到你的安装路径就行了，在使用cd的时候，如果文件夹有空格，这一整个文件夹名字要用双引号括起来，例如cd /home/dst/steam/steamapps/common/“Don’t Starve Together Dedicated Server”/bin<br>然后输入下面指令来创建启动脚本（Pixel是存档文件夹的名字，下一步需要放在之前创建的/home/dst/dstsave目录下，根据需要自行修改）</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /home/dst/steam/steamapps/common/<span class="hljs-string">&quot;Don&#x27;t Starve Together Dedicated Server&quot;</span>/bin
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;./dontstarve_dedicated_server_nullrenderer -console -persistent_storage_root /home/dst/dstsave -conf_dir Pixel -cluster Master -shard Master&quot;</span> &gt; master_start.sh
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;./dontstarve_dedicated_server_nullrenderer -console -persistent_storage_root /home/dst/dstsave -conf_dir Pixel -cluster Caves -shard Caves&quot;</span> &gt; cave_start.sh
 chmod +x master_start.sh cave_start.sh</code></pre></div>
-<p>接下来把之前创建的<strong>Pixel</strong>配置文件夹拷贝到**/home/dst/dstsave**下就行了，拷贝完成后就只剩下开服喽！</p>
+<p>接下来把之前创建的<strong>Pixel</strong>配置文件夹拷贝到/home/dst/dstsave下就行了</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /home/dst/steam/steamapps/common/<span class="hljs-string">&quot;Don&#x27;t Starve Together Dedicated Server&quot;</span>/bin
 screen -S master
 ./master_start.sh
