@@ -95,6 +95,27 @@
   </url>
   
   <url>
+    <loc>https://www.icemilk.top/tags/CDN/</loc>
+    <lastmod>2021-10-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/Cloudflare/</loc>
+    <lastmod>2021-10-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <lastmod>2021-10-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.icemilk.top/tags/DST/</loc>
     <lastmod>2021-10-10</lastmod>
     <changefreq>daily</changefreq>
@@ -116,13 +137,6 @@
   </url>
   
   <url>
-    <loc>https://www.icemilk.top/tags/Cloudflare/</loc>
-    <lastmod>2021-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.icemilk.top/tags/Goindex/</loc>
     <lastmod>2021-10-10</lastmod>
     <changefreq>daily</changefreq>
@@ -137,14 +151,14 @@
   </url>
   
   <url>
-    <loc>https://www.icemilk.top/tags/CDN/</loc>
+    <loc>https://www.icemilk.top/tags/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2021-10-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.icemilk.top/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <loc>https://www.icemilk.top/tags/%E7%BD%91%E6%98%93%E4%BA%91UWP/</loc>
     <lastmod>2021-10-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -187,20 +201,6 @@
   
   <url>
     <loc>https://www.icemilk.top/tags/sakurafrp/</loc>
-    <lastmod>2021-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2021-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/%E7%BD%91%E6%98%93%E4%BA%91UWP/</loc>
     <lastmod>2021-10-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
