@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.icemilk.top/archives/a43ef6ce.html</loc>
+    
+    <lastmod>2021-10-12</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.icemilk.top/archives/a1635f0b.html</loc>
     
     <lastmod>2021-10-12</lastmod>
@@ -38,13 +45,6 @@
   
   <url>
     <loc>https://www.icemilk.top/archives/a6b882cb.html</loc>
-    
-    <lastmod>2021-08-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/archives/a43ef6ce.html</loc>
     
     <lastmod>2021-08-01</lastmod>
     
@@ -116,21 +116,7 @@
   </url>
   
   <url>
-    <loc>https://www.icemilk.top/tags/CDN/</loc>
-    <lastmod>2021-10-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.icemilk.top/tags/Cloudflare/</loc>
-    <lastmod>2021-10-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
     <lastmod>2021-10-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -145,6 +131,20 @@
   
   <url>
     <loc>https://www.icemilk.top/tags/Google-Drive/</loc>
+    <lastmod>2021-10-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/CDN/</loc>
+    <lastmod>2021-10-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
     <lastmod>2021-10-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
