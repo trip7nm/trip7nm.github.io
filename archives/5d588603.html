@@ -1,45 +1,54 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="通过LinuxGSM部署饥荒专用服务器">
   <meta name="author" content="Ryza">
   <meta name="keywords" content="DST,饥荒,LinuxGSM">
+  <meta name="description" content="通过LinuxGSM部署饥荒专用服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过LinuxGSM部署饥荒专用服务器">
+<meta property="og:url" content="https://www.icemilk.top/archives/5d588603.html">
+<meta property="og:site_name" content="冰牛奶">
+<meta property="og:description" content="通过LinuxGSM部署饥荒专用服务器">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-20T05:45:54.000Z">
+<meta property="article:modified_time" content="2021-11-20T07:34:14.150Z">
+<meta property="article:author" content="Ryza">
+<meta property="article:tag" content="饥荒">
+<meta property="article:tag" content="LinuxGSM">
+<meta name="twitter:card" content="summary_large_image">
   
   <title>通过LinuxGSM部署饥荒专用服务器 - 冰牛奶</title>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-dark-dimmed.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-dark-dimmed.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -58,18 +67,20 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"www.icemilk.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"1b1e00957a49cd2ef5541b893b26d4c0","google":"UA-203450696-1","gtag":280992526,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.icemilk.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"1b1e00957a49cd2ef5541b893b26d4c0","google":"UA-203450696-1","gtag":280992526,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>冰牛奶</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>冰牛奶</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -155,13 +166,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -195,21 +207,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      734 字
+      2.7k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
-       分钟
+      8 分钟
     </span>
   
 
@@ -249,66 +258,45 @@
             <h1 style="display: none">通过LinuxGSM部署饥荒专用服务器</h1>
             
             <div class="markdown-body">
-              <h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><h3 id="Ubuntu-64-bit"><a href="#Ubuntu-64-bit" class="headerlink" title="Ubuntu 64-bit"></a>Ubuntu 64-bit</h3><div class="code-wrapper"><pre><code class="hljs Bash">sudo dpkg --add-architecture i386; sudo apt update; sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 libsdl2-2.0-0:i386 steamcmd libcurl4-gnutls-dev:i386</code></pre></div>
-<h3 id="Debian-64-bit"><a href="#Debian-64-bit" class="headerlink" title="Debian 64-bit"></a>Debian 64-bit</h3><div class="code-wrapper"><pre><code class="hljs Bash">sudo dpkg --add-architecture i386; sudo apt update; sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 libcurl4-gnutls-dev:i386</code></pre></div>
+              <h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><h3 id="Ubuntu-64-bit"><a href="#Ubuntu-64-bit" class="headerlink" title="Ubuntu 64-bit"></a>Ubuntu 64-bit</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo dpkg --add-architecture i386; sudo apt update; sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 libsdl2-2.0-0:i386 steamcmd libcurl4-gnutls-dev:i386<br></code></pre></td></tr></table></figure>
+<h3 id="Debian-64-bit"><a href="#Debian-64-bit" class="headerlink" title="Debian 64-bit"></a>Debian 64-bit</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo dpkg --add-architecture i386; sudo apt update; sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 libcurl4-gnutls-dev:i386<br></code></pre></td></tr></table></figure>
 <h3 id="CentOS-64-bit"><a href="#CentOS-64-bit" class="headerlink" title="CentOS 64-bit"></a>CentOS 64-bit</h3><div class="note note-warning">
             <p>EPEL is required to install some dependencies needed for using LinuxGSM on CentOS.</p>
           </div>
-<div class="code-wrapper"><pre><code class="hljs Bash">yum install epel-release</code></pre></div>
-<div class="code-wrapper"><pre><code class="hljs Bash">yum install curl wget tar bzip2 gzip unzip python3 binutils bc jq tmux glibc.i686 libstdc++ libstdc++.i686 libcurl.i686</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">yum install epel-release<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">yum install curl wget tar bzip2 gzip unzip python3 binutils bc jq tmux glibc.i686 libstdc++ libstdc++.i686 libcurl.i686<br></code></pre></td></tr></table></figure>
 
 <h2 id="安装本体"><a href="#安装本体" class="headerlink" title="安装本体"></a>安装本体</h2><p>添加用于开服的用户</p>
-<div class="code-wrapper"><pre><code class="hljs Bash">adduser dstserver</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">adduser dstserver<br></code></pre></td></tr></table></figure>
 <p>切换用户</p>
-<div class="code-wrapper"><pre><code class="hljs Bash">su - dstserver</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">su - dstserver<br></code></pre></td></tr></table></figure>
 <p>直接在用户目录,即/home/dstserver下载linuxgsm.sh</p>
-<div class="code-wrapper"><pre><code class="hljs Bash">wget -O linuxgsm.sh https://linuxgsm.sh &amp;&amp; chmod +x linuxgsm.sh &amp;&amp; bash linuxgsm.sh dstserver</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">wget -O linuxgsm.sh https://linuxgsm.sh &amp;&amp; chmod +x linuxgsm.sh &amp;&amp; bash linuxgsm.sh dstserver<br></code></pre></td></tr></table></figure>
 <p>执行安装命令</p>
-<div class="code-wrapper"><pre><code class="hljs Bash">./dstserver install</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">./dstserver install<br></code></pre></td></tr></table></figure>
 
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>众所周知饥荒一般是主世界和洞穴世界同时开,并使用不同的配置文件,所以你得有两个服务端同时开</p>
 <h3 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h3><p>接着上一步,直接再执行一遍安装命令</p>
-<div class="code-wrapper"><pre><code class="hljs Bash">./dstserver install</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">./dstserver install<br></code></pre></td></tr></table></figure>
 <p>就会得到detserver-2,这个文件和原有的dstserver可以分别独立启动,互不干扰<br>接下来修改配置使它们分别启动主世界和洞穴世界</p>
-<div class="code-wrapper"><pre><code class="hljs Bash"><span class="hljs-built_in">cd</span> /home/dstserver/lgsm/config-lgsm/dstserver &amp;&amp; ls</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><span class="hljs-built_in">cd</span> /home/dstserver/lgsm/config-lgsm/dstserver &amp;&amp; ls<br></code></pre></td></tr></table></figure>
 <p>新建dstserver-2.cfg</p>
-<div class="code-wrapper"><pre><code class="hljs Bash">touch dstserver-2.cfg</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">touch dstserver-2.cfg<br></code></pre></td></tr></table></figure>
 <p>正常情况这里的配置文件都是空的的,默认配置文件存放在<span class="label label-primary">_default.cfg</span>里面,按需修改,这里给出我的模板</p>
 <div class="note note-warning">
             <p>主世界 edit in dstserver.cfg</p>
           </div>
-<div class="code-wrapper"><pre><code class="hljs cfg">sharding=&quot;true&quot;
-master=&quot;true&quot;
-shard=&quot;Master&quot;
-cluster=&quot;Cluster_1&quot;
-cave=&quot;false&quot;
-persistentstorageroot=&quot;$&#123;HOME&#125;/.klei&quot;
-confdir=&quot;DoNotStarveTogether&quot;
-startparameters=&quot;-persistent_storage_root $&#123;persistentstorageroot&#125; -conf_dir $&#123;confdir&#125; -cluster $&#123;cluster&#125; -shard $&#123;shard&#125;&quot;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cfg">sharding=&quot;true&quot;<br>master=&quot;true&quot;<br>shard=&quot;Master&quot;<br>cluster=&quot;Cluster_1&quot;<br>cave=&quot;false&quot;<br>persistentstorageroot=&quot;$&#123;HOME&#125;/.klei&quot;<br>confdir=&quot;DoNotStarveTogether&quot;<br>startparameters=&quot;-persistent_storage_root $&#123;persistentstorageroot&#125; -conf_dir $&#123;confdir&#125; -cluster $&#123;cluster&#125; -shard $&#123;shard&#125;&quot;<br></code></pre></td></tr></table></figure>
 <div class="note note-warning">
             <p>洞穴世界 edit in dstserver-2.cfg</p>
           </div>
-<div class="code-wrapper"><pre><code class="hljs cfg">sharding=&quot;false&quot;
-master=&quot;false&quot;
-shard=&quot;Caves&quot;
-cluster=&quot;Cluster_1&quot;
-cave=&quot;true&quot;
-persistentstorageroot=&quot;$&#123;HOME&#125;/.klei&quot;
-confdir=&quot;DoNotStarveTogether&quot;
-startparameters=&quot;-persistent_storage_root $&#123;persistentstorageroot&#125; -conf_dir $&#123;confdir&#125; -cluster $&#123;cluster&#125; -shard $&#123;shard&#125;&quot;</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cfg">sharding=&quot;false&quot;<br>master=&quot;false&quot;<br>shard=&quot;Caves&quot;<br>cluster=&quot;Cluster_1&quot;<br>cave=&quot;true&quot;<br>persistentstorageroot=&quot;$&#123;HOME&#125;/.klei&quot;<br>confdir=&quot;DoNotStarveTogether&quot;<br>startparameters=&quot;-persistent_storage_root $&#123;persistentstorageroot&#125; -conf_dir $&#123;confdir&#125; -cluster $&#123;cluster&#125; -shard $&#123;shard&#125;&quot;<br></code></pre></td></tr></table></figure>
 <p>和以往一样,要修改主世界服务器的端口,在startparameters里加参数就行了,不再赘述</p>
 <h3 id="游戏存档及配置"><a href="#游戏存档及配置" class="headerlink" title="游戏存档及配置"></a>游戏存档及配置</h3><p>目录在<span class="label label-primary">/home/dstserver/.klei/DoNotStarveTogether</span>下,注意存档文件夹名字要和上面的启动设置中的Cluster_1保持一致,具体怎么得到配置,请看我之前的文章<br><a href="https://www.icemilk.top/archives/ff1824ec.html">饥荒联机版专用服务器搭建全流程Windows-Linux</a></p>
 <h2 id="关于mod"><a href="#关于mod" class="headerlink" title="关于mod"></a>关于mod</h2><p>上一步的存档配置文件中启用的mod默认是不会自动下载和更新的,要在<span class="label label-primary">/home/dstserver/serverfiles/mods/dedicated_server_mods_setup.lua</span>中加入mod信息才能在每次开服前自动下载和更新mod,这个和客户端文件夹里的同名文件的作用完全一致,可以去本地客户端拷贝一份过来<br>例如我的</p>
-<div class="code-wrapper"><pre><code class="hljs cfg">ServerModSetup(&quot;723721217&quot;)
-ServerModSetup(&quot;727325644&quot;)
-ServerModSetup(&quot;729309574&quot;)
-ServerModSetup(&quot;737441707&quot;)
-ServerModSetup(&quot;897634060&quot;)
-ServerModSetup(&quot;721491336&quot;)
-ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cfg">ServerModSetup(&quot;723721217&quot;)<br>ServerModSetup(&quot;727325644&quot;)<br>ServerModSetup(&quot;729309574&quot;)<br>ServerModSetup(&quot;737441707&quot;)<br>ServerModSetup(&quot;897634060&quot;)<br>ServerModSetup(&quot;721491336&quot;)<br>ServerModSetup(&quot;2314960345&quot;)<br></code></pre></td></tr></table></figure>
 
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><div class="code-wrapper"><pre><code class="hljs Bash"><span class="hljs-built_in">cd</span> ~
-./dstderver start &amp;&amp; ./dstserver-2 start</code></pre></div>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><span class="hljs-built_in">cd</span> ~<br>./dstderver start &amp;&amp; ./dstserver-2 start<br></code></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><div class="note note-primary">
             <ul><li><a target="_blank" rel="noopener" href="https://linuxgsm.com/servers/dstserver/">LinuxGSM for DST 部署文档</a></li><li><a target="_blank" rel="noopener" href="https://docs.linuxgsm.com/">LinuxGSM官方文档</a></li></ul>
@@ -357,32 +345,6 @@ ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"hvIBBm9d61DebO5eGPQ6dw4T-MdYXbMMI","appKey":"GBiuPC2rt1fH2yjMG9mWMDzl","placeholder":"喵喵喵~~~","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-              </article>
-            
           </article>
         </div>
       </div>
@@ -405,7 +367,7 @@ ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -439,7 +401,7 @@ ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     			 <img src="https://loli.ryza.ml/get/@ihicey?theme=rule34" srcset="/img/loading.gif" lazyload/><br/> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <img src="https://loli.ryza.ml/get/@ihicey?theme=rule34" srcset="/img/loading.gif" lazyload/><br/> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
 
@@ -451,8 +413,8 @@ ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
 
   <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -463,12 +425,16 @@ ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
 
 
   
@@ -481,23 +447,18 @@ ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 
@@ -506,7 +467,7 @@ ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -575,6 +536,7 @@ ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
+
 
 </body>
 </html>
