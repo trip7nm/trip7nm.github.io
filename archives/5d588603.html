@@ -17,11 +17,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="用免费内网穿透工具Sakurafrp实现远程访问家中群晖NAS及qbittorrent">
+  <meta name="description" content="通过LinuxGSM部署饥荒专用服务器">
   <meta name="author" content="Ryza">
-  <meta name="keywords" content="qbittorrent,sakurafrp,公网IP,群晖">
+  <meta name="keywords" content="DST,饥荒,LinuxGSM">
   
-  <title>没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https - 冰牛奶</title>
+  <title>通过LinuxGSM部署饥荒专用服务器 - 冰牛奶</title>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https">
+            <span class="h2" id="subtitle" title="通过LinuxGSM部署饥荒专用服务器">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-13 00:00" pubdate>
-        2021年4月13日 凌晨
+      <time datetime="2021-11-20 13:45" pubdate>
+        2021年11月20日 下午
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      734 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      10
        分钟
     </span>
   
@@ -246,81 +246,85 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https</h1>
+            <h1 style="display: none">通过LinuxGSM部署饥荒专用服务器</h1>
             
             <div class="markdown-body">
-              <p><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/00.png" srcset="/img/loading.gif" lazyload><br>sakurafrp提供免费的内网穿透服务，它们的服务器大多都在国内，延迟十分优秀，免费用户最多拥有5条10mbps的隧道，每月流量有5Gb上限，但是可以通过签到获取大量流量(每天获得3Gb左右)，流量超出后不会停用隧道而是进入限速4mbps的限速模式。作为个人使用访问家中设备的隧道，免费用户已经完全能满足需求了，更详细的流量规则请去它的官网看看吧<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/01.png" srcset="/img/loading.gif" lazyload><br>首先呢你要有</p>
-<ul>
-<li>  一个sakurafrp的账号，去<a target="_blank" rel="noopener" href="https://www.natfrp.com/">这里</a>注册</li>
-<li>  一个<strong>已备案</strong>的域名，或<strong>未备案</strong>的域名(使用高延迟的非中国大陆节点)</li>
-<li>  你的群晖nas<h2 id="获取frpc配置文件"><a href="#获取frpc配置文件" class="headerlink" title="获取frpc配置文件"></a>获取frpc配置文件</h2>登录Sakurafrp控制台转到创建隧道<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/02.png" srcset="/img/loading.gif" lazyload><br>上面的穿透节点按需选择，我们需要选择<strong>可建站</strong>的节点来进行穿透，隧道选择<strong>https隧道</strong>，如果使用<strong>tcp</strong>协议代理，那么访问域名的时候需要加上端口，不方便也不美观。本地端口请填写<strong>你的群晖nas</strong>中设置的https访问端口，默认端口是5001(如果你没有改过的话)，绑定域名处填写你自己的域名就好了</li>
-</ul>
-<p>回到隧道列表，点击刚才创建隧道的<strong>配置文件</strong><br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/03.png" srcset="/img/loading.gif" lazyload><br>这个框里面的就是我们要的<strong>配置文件</strong>了，暂时搁置，后面会用到，还有别忘了将你的域名<strong>CNAME</strong>到这个节点域名上</p>
-<h2 id="安装frpc"><a href="#安装frpc" class="headerlink" title="安装frpc"></a>安装frpc</h2><p>ssh连上群晖nas后首先切换为root用户</p>
-<div class="code-wrapper"><pre><code class="hljs bash">sudo -i</code></pre></div>
-<p>进入/usr/local/bin/目录下载解压frp本体<br>我的机器是猫盘，采用arm架构的cpu，和群晖DS119J和DS120J一样，请去<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a>找到对应自己机器型号版本的下载地址，用<span class="label label-info">wget <下载地址></span>来下载，如果连接性不佳，开启群晖上的代理设置，用电脑上的代理软件来连接，或者先把文件通过代理下载到本机，然后上传到群晖nas的/usr/local/bin目录下</p>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/bin
-wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_arm.tar.gz
-tar -zxf frp_0.36.2_linux_arm.tar.gz
-cp ./frp_0.36.2_linux_arm/frpｃ ./
-chmod 755 frpc</code></pre></div>
-<p>编辑frp配置文件，在上一步完成后输入<span class="label label-info">vim /usr/local/bin/frpc.ini</span>后按”i”开启编辑模式填入上面获取到的<strong>配置文件</strong>后按<strong>ESC键</strong>退出编辑，接着输入<span class="label label-info">:wq</span>保存退出</p>
-<p>接着要设置开机启动</p>
-<div class="code-wrapper"><pre><code class="hljs bash">vim /etc/init/frpc.conf</code></pre></div>
-<p>如果您按照本文档进行配置并使用了下面的内容，frpc 会在系统启动时自启并在出错时自动重启，无需额外配置</p>
-<div class="code-wrapper"><pre><code class="hljs bash">description <span class="hljs-string">&quot;SakuraFrp synology frpc service&quot;</span>
+              <h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><h3 id="Ubuntu-64-bit"><a href="#Ubuntu-64-bit" class="headerlink" title="Ubuntu 64-bit"></a>Ubuntu 64-bit</h3><div class="code-wrapper"><pre><code class="hljs Bash">sudo dpkg --add-architecture i386; sudo apt update; sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 libsdl2-2.0-0:i386 steamcmd libcurl4-gnutls-dev:i386</code></pre></div>
+<h3 id="Debian-64-bit"><a href="#Debian-64-bit" class="headerlink" title="Debian 64-bit"></a>Debian 64-bit</h3><div class="code-wrapper"><pre><code class="hljs Bash">sudo dpkg --add-architecture i386; sudo apt update; sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 libcurl4-gnutls-dev:i386</code></pre></div>
+<h3 id="CentOS-64-bit"><a href="#CentOS-64-bit" class="headerlink" title="CentOS 64-bit"></a>CentOS 64-bit</h3><div class="note note-warning">
+            <p>EPEL is required to install some dependencies needed for using LinuxGSM on CentOS.</p>
+          </div>
+<div class="code-wrapper"><pre><code class="hljs Bash">yum install epel-release</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs Bash">yum install curl wget tar bzip2 gzip unzip python3 binutils bc jq tmux glibc.i686 libstdc++ libstdc++.i686 libcurl.i686</code></pre></div>
 
-author <span class="hljs-string">&quot;FENGberd&quot;</span>
+<h2 id="安装本体"><a href="#安装本体" class="headerlink" title="安装本体"></a>安装本体</h2><p>添加用于开服的用户</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">adduser dstserver</code></pre></div>
+<p>切换用户</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">su - dstserver</code></pre></div>
+<p>直接在用户目录,即/home/dstserver下载linuxgsm.sh</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">wget -O linuxgsm.sh https://linuxgsm.sh &amp;&amp; chmod +x linuxgsm.sh &amp;&amp; bash linuxgsm.sh dstserver</code></pre></div>
+<p>执行安装命令</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">./dstserver install</code></pre></div>
 
-start on syno.network.ready
-stop on runlevel [016]
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>众所周知饥荒一般是主世界和洞穴世界同时开,并使用不同的配置文件,所以你得有两个服务端同时开</p>
+<h3 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h3><p>接着上一步,直接再执行一遍安装命令</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">./dstserver install</code></pre></div>
+<p>就会得到detserver-2,这个文件和原有的dstserver可以分别独立启动,互不干扰<br>接下来修改配置使它们分别启动主世界和洞穴世界</p>
+<div class="code-wrapper"><pre><code class="hljs Bash"><span class="hljs-built_in">cd</span> /home/dstserver/lgsm/config-lgsm/dstserver &amp;&amp; ls</code></pre></div>
+<p>新建dstserver-2.cfg</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">touch dstserver-2.cfg</code></pre></div>
+<p>正常情况这里的配置文件都是空的的,默认配置文件存放在<span class="label label-primary">_default.cfg</span>里面,按需修改,这里给出我的模板</p>
+<div class="note note-warning">
+            <p>主世界 edit in dstserver.cfg</p>
+          </div>
+<div class="code-wrapper"><pre><code class="hljs cfg">sharding=&quot;true&quot;
+master=&quot;true&quot;
+shard=&quot;Master&quot;
+cluster=&quot;Cluster_1&quot;
+cave=&quot;false&quot;
+persistentstorageroot=&quot;$&#123;HOME&#125;/.klei&quot;
+confdir=&quot;DoNotStarveTogether&quot;
+startparameters=&quot;-persistent_storage_root $&#123;persistentstorageroot&#125; -conf_dir $&#123;confdir&#125; -cluster $&#123;cluster&#125; -shard $&#123;shard&#125;&quot;</code></pre></div>
+<div class="note note-warning">
+            <p>洞穴世界 edit in dstserver-2.cfg</p>
+          </div>
+<div class="code-wrapper"><pre><code class="hljs cfg">sharding=&quot;false&quot;
+master=&quot;false&quot;
+shard=&quot;Caves&quot;
+cluster=&quot;Cluster_1&quot;
+cave=&quot;true&quot;
+persistentstorageroot=&quot;$&#123;HOME&#125;/.klei&quot;
+confdir=&quot;DoNotStarveTogether&quot;
+startparameters=&quot;-persistent_storage_root $&#123;persistentstorageroot&#125; -conf_dir $&#123;confdir&#125; -cluster $&#123;cluster&#125; -shard $&#123;shard&#125;&quot;</code></pre></div>
+<p>和以往一样,要修改主世界服务器的端口,在startparameters里加参数就行了,不再赘述</p>
+<h3 id="游戏存档及配置"><a href="#游戏存档及配置" class="headerlink" title="游戏存档及配置"></a>游戏存档及配置</h3><p>目录在<span class="label label-primary">/home/dstserver/.klei/DoNotStarveTogether</span>下,注意存档文件夹名字要和上面的启动设置中的Cluster_1保持一致,具体怎么得到配置,请看我之前的文章<br><a href="https://www.icemilk.top/archives/ff1824ec.html">饥荒联机版专用服务器搭建全流程Windows-Linux</a></p>
+<h2 id="关于mod"><a href="#关于mod" class="headerlink" title="关于mod"></a>关于mod</h2><p>上一步的存档配置文件中启用的mod默认是不会自动下载和更新的,要在<span class="label label-primary">/home/dstserver/serverfiles/mods/dedicated_server_mods_setup.lua</span>中加入mod信息才能在每次开服前自动下载和更新mod,这个和客户端文件夹里的同名文件的作用完全一致,可以去本地客户端拷贝一份过来<br>例如我的</p>
+<div class="code-wrapper"><pre><code class="hljs cfg">ServerModSetup(&quot;723721217&quot;)
+ServerModSetup(&quot;727325644&quot;)
+ServerModSetup(&quot;729309574&quot;)
+ServerModSetup(&quot;737441707&quot;)
+ServerModSetup(&quot;897634060&quot;)
+ServerModSetup(&quot;721491336&quot;)
+ServerModSetup(&quot;2314960345&quot;)</code></pre></div>
 
-respawn
-respawn <span class="hljs-built_in">limit</span> 0 5
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><div class="code-wrapper"><pre><code class="hljs Bash"><span class="hljs-built_in">cd</span> ~
+./dstderver start &amp;&amp; ./dstserver-2 start</code></pre></div>
 
-<span class="hljs-built_in">exec</span> /usr/<span class="hljs-built_in">local</span>/bin/frpc　-c /usr/<span class="hljs-built_in">local</span>/bin/frpc.ini</code></pre></div>
-<p>保存退出<br>最后删除一下多余的文件(<strong>rm -rf警告！！！</strong>)</p>
-<div class="code-wrapper"><pre><code class="hljs bash">rm -f /usr/<span class="hljs-built_in">local</span>/bin/frp_0.36.2_linux_arm.tar.gz &amp;&amp; rm -rf /usr/<span class="hljs-built_in">local</span>/bin/frp_0.36.2_linux_arm</code></pre></div>
-<h2 id="测试frp连接"><a href="#测试frp连接" class="headerlink" title="测试frp连接"></a>测试frp连接</h2><p>执行下面的命令测试 frpc 是否能正常运行</p>
-<div class="code-wrapper"><pre><code class="hljs bash">start frpc
-tail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log</code></pre></div>
-<p>看到succeed字样就表示连接成功了，除此之外在sakurafrp控制面板的隧道列表里节点前面也会显示<span class="label label-info">[在线]</span>标识</p>
-<h2 id="上传证书开启https"><a href="#上传证书开启https" class="headerlink" title="上传证书开启https"></a>上传证书开启https</h2><p>进入群晖<strong>控制面板-安全性-证书</strong>将你的域名证书导入，证书是哪里来的这里不再赘述了，阿里腾讯都有申请免费ssl证书的渠道。如果这里的域名将作为群晖后台的登录域名，就将它设置为默认证书<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/04.png" srcset="/img/loading.gif" lazyload><br>这样就可以通过<span class="label label-info">https://<你的域名></span>访问你的群晖nas了</p>
-<h2 id="群晖反代nas内其他应用"><a href="#群晖反代nas内其他应用" class="headerlink" title="群晖反代nas内其他应用"></a>群晖反代nas内其他应用</h2><p>群晖提供这么方便的证书管理真实不用白不用啊，有些应用例如jellyfin有自己的证书管理，但有些应用提供的证书管理不是那么人性化，于是将证书统一交给群晖管理，还能通过反代加上sakurafrp来实现不用加上端口的访问。<br>这里拿qbittorrent来做例子，它的访问端口是9080，现在我想通过一个域名来访问，回到上面的新建节点的步骤，选择与前一隧道<strong>相同的服务器</strong>来建立隧道，本地端口填写9080<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/05.png" srcset="/img/loading.gif" lazyload><br>创建后打开隧道配置文件，结构应该如下</p>
-<div class="code-wrapper"><pre><code class="hljs bash">[common]
-......省略......
-[你的隧道名称]
-
-......省略......
-末尾</code></pre></div>
-<p>这里仅需要将<span class="label label-info">[你的隧道名称]</span>以及后面部分的配置文件添加到群晖nas的frpc配置文件的末尾就行了<br>通过<span class="label label-info">vim /usr/local/bin/frpc.ini</span>编辑文件后保存退出，重启frpc并查看启动日志</p>
-<div class="code-wrapper"><pre><code class="hljs bash">stop frpc
-start frpc
-tail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log</code></pre></div>
-<p>回到群晖<strong>控制面板-应用程序门户-反向代理服务器</strong>新增按照如下配置<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/06.png" srcset="/img/loading.gif" lazyload><br><strong>主机名</strong>处填你的域名，保存，再回到<strong>控制面板-安全性-证书</strong>导入此域名的证书<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/07.png" srcset="/img/loading.gif" lazyload><br>点击配置，将你的服务切换成对应的证书即可。还是要记得将域名<strong>CNAME</strong>到sakurafrp的节点域名上，待解析生效后就能通过<span class="label label-info">https://<你的域名></span>直接访问群晖中qbittorrent的webUI了<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/sakurafrp/08.png" srcset="/img/loading.gif" lazyload></p>
-<p>加上了ssl后的小锁看的真舒服，不是吗🍋</p>
-
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><div class="note note-primary">
+            <ul><li><a target="_blank" rel="noopener" href="https://linuxgsm.com/servers/dstserver/">LinuxGSM for DST 部署文档</a></li><li><a target="_blank" rel="noopener" href="https://docs.linuxgsm.com/">LinuxGSM官方文档</a></li></ul>
+          </div>  
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%BE%A4%E6%99%96/">群晖</a>
+                      <a class="hover-with-bg" href="/tags/%E9%A5%A5%E8%8D%92/">饥荒</a>
                     
-                      <a class="hover-with-bg" href="/tags/qbittorrent/">qbittorrent</a>
-                    
-                      <a class="hover-with-bg" href="/tags/sakurafrp/">sakurafrp</a>
+                      <a class="hover-with-bg" href="/tags/LinuxGSM/">LinuxGSM</a>
                     
                   </div>
                 
@@ -337,18 +341,12 @@ tail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log</code></pre></
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/archives/a6b882cb.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">N1盒子Docker挂载群晖NFS共享目录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/archives/ff1824ec.html">
-                        <span class="hidden-mobile">饥荒联机版专用服务器搭建全流程Windows-Linux</span>
+                      <a href="/archives/e074f02e.html">
+                        <span class="hidden-mobile">白嫖微软超大5T不限速网盘教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
