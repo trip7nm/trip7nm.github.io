@@ -24,7 +24,7 @@
 <meta property="og:description" content="通过LinuxGSM部署饥荒专用服务器">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-20T05:45:54.000Z">
-<meta property="article:modified_time" content="2021-11-20T07:34:14.150Z">
+<meta property="article:modified_time" content="2021-12-13T05:08:41.893Z">
 <meta property="article:author" content="Ryza">
 <meta property="article:tag" content="饥荒">
 <meta property="article:tag" content="LinuxGSM">
@@ -296,7 +296,7 @@
 <h2 id="关于mod"><a href="#关于mod" class="headerlink" title="关于mod"></a>关于mod</h2><p>上一步的存档配置文件中启用的mod默认是不会自动下载和更新的,要在<span class="label label-primary">/home/dstserver/serverfiles/mods/dedicated_server_mods_setup.lua</span>中加入mod信息才能在每次开服前自动下载和更新mod,这个和客户端文件夹里的同名文件的作用完全一致,可以去本地客户端拷贝一份过来<br>例如我的</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cfg">ServerModSetup(&quot;723721217&quot;)<br>ServerModSetup(&quot;727325644&quot;)<br>ServerModSetup(&quot;729309574&quot;)<br>ServerModSetup(&quot;737441707&quot;)<br>ServerModSetup(&quot;897634060&quot;)<br>ServerModSetup(&quot;721491336&quot;)<br>ServerModSetup(&quot;2314960345&quot;)<br></code></pre></td></tr></table></figure>
 
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><span class="hljs-built_in">cd</span> ~<br>./dstderver start &amp;&amp; ./dstserver-2 start<br></code></pre></td></tr></table></figure>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><span class="hljs-built_in">cd</span> ~<br>./dstserver start &amp;&amp; ./dstserver-2 start<br></code></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><div class="note note-primary">
             <ul><li><a target="_blank" rel="noopener" href="https://linuxgsm.com/servers/dstserver/">LinuxGSM for DST 部署文档</a></li><li><a target="_blank" rel="noopener" href="https://docs.linuxgsm.com/">LinuxGSM官方文档</a></li></ul>
