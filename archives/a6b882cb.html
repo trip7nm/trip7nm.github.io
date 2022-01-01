@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="冰牛奶">
 <meta property="og:description" content="使用docker的磁盘创建功能连接群晖的nfs共享目录">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/01.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/02.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/03.png">
+<meta property="og:image" content="https://outshare.raobee.com/2022/01/01/6117bf709f548.png">
+<meta property="og:image" content="https://outshare.raobee.com/2022/01/01/e8fcb105fb3bb.png">
+<meta property="og:image" content="https://outshare.raobee.com/2022/01/01/2b05a4489a274.png">
 <meta property="article:published_time" content="2021-07-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-25T17:32:34.888Z">
+<meta property="article:modified_time" content="2022-01-01T08:16:33.283Z">
 <meta property="article:author" content="Ryza">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="N1盒子">
 <meta property="article:tag" content="NFS">
 <meta property="article:tag" content="群晖">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/01.png">
+<meta name="twitter:image" content="https://outshare.raobee.com/2022/01/01/6117bf709f548.png">
   
   <title>N1盒子Docker挂载群晖NFS共享目录 - 冰牛奶</title>
 
@@ -265,7 +265,7 @@
             
             <div class="markdown-body">
               <h2 id="始于emby"><a href="#始于emby" class="headerlink" title="始于emby"></a>始于emby</h2><p>一开始的emby跑在猫盘群晖上，但猫盘本来就跑了qb来挂pt，再跑emby还是挺吃力的，故转移到n1上，数据储存还是用猫盘，于是通过网络映射猫盘NFS共享目录，让猫盘只承担文件传输的负载。</p>
-<h2 id="群晖开启nfs"><a href="#群晖开启nfs" class="headerlink" title="群晖开启nfs"></a>群晖开启nfs</h2><p>群晖控制面板-&gt;文件服务，把NFS和启用NFSv4.1支持都勾上，应用<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/01.png" srcset="/img/loading.gif" lazyload><br>控制面板-&gt;共享文件夹，选你要映射的文件夹，编辑-&gt;NFS权限，新增，如下图填写<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/02.png" srcset="/img/loading.gif" lazyload><br>其中 <strong>服务器名称或IP地址</strong> 填你要赋予映射权限的 <strong>设备ip/网段</strong> ，或者直接用通配符 * 表示忽略来源限制，所有能连上来的设备都可以映射，反正局域网无所畏惧(<strong>误</strong>)。注意 <strong>Squash</strong> 一定要选<strong>映射所有用户为admin</strong> 不然没权限。</p>
+<h2 id="群晖开启nfs"><a href="#群晖开启nfs" class="headerlink" title="群晖开启nfs"></a>群晖开启nfs</h2><p>群晖控制面板-&gt;文件服务，把NFS和启用NFSv4.1支持都勾上，应用<br><img src="https://outshare.raobee.com/2022/01/01/6117bf709f548.png" srcset="/img/loading.gif" lazyload><br>控制面板-&gt;共享文件夹，选你要映射的文件夹，编辑-&gt;NFS权限，新增，如下图填写<br><img src="https://outshare.raobee.com/2022/01/01/e8fcb105fb3bb.png" srcset="/img/loading.gif" lazyload><br>其中 <strong>服务器名称或IP地址</strong> 填你要赋予映射权限的 <strong>设备ip/网段</strong> ，或者直接用通配符 * 表示忽略来源限制，所有能连上来的设备都可以映射，反正局域网无所畏惧(<strong>误</strong>)。注意 <strong>Squash</strong> 一定要选<strong>映射所有用户为admin</strong> 不然没权限。</p>
 <h2 id="创建Docker-Volume"><a href="#创建Docker-Volume" class="headerlink" title="创建Docker Volume"></a>创建Docker Volume</h2><p>使用docker创建驱动类型为nfs4的磁盘volume-nfs，并指定该nfs的ip，共享目录的权限，以及共享目录</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker volume create --driver local \</span><br>--opt <span class="hljs-built_in">type</span>=nfs4 --opt o=addr=192.168.6.99,rw \<br>--opt device=:/volume1/catdrive volume-nfs<br><br><span class="hljs-comment"># 参数解释</span><br>--driver , -d    <span class="hljs-built_in">local</span>    <span class="hljs-comment"># 指定卷驱动程序名称，local为默认</span><br>--name        <span class="hljs-comment"># 指定卷名</span><br>--opt , -o    <span class="hljs-comment"># 设置驱动程序特定选项</span><br>addr=         <span class="hljs-comment"># 群晖Nas的ip</span><br>device=       <span class="hljs-comment"># 后面是群晖的目录，也就是你给了nfs权限的那个共享文件夹目录</span><br></code></pre></td></tr></table></figure>
 <p>查看创建好的volume</p>
@@ -276,7 +276,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d \<br>--name emby \<br>--restart=always \<br>-v volume-nfs:/neko \   <span class="hljs-comment">#ここ，就是这个</span><br>--network host \<br>--env UID=1000 \<br>--env GID=100 \<br>emby/embyserver_arm64v8:4.6.0.3<br></code></pre></td></tr></table></figure>
 <p>进入容器里面看看</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Neko:~<span class="hljs-comment"># docker exec -it emby /bin/sh</span><br>/ <span class="hljs-comment"># ls</span><br>bin       dev       home      lib       licenses  proc      sys       tmp       var<br>config    etc       init      libexec   neko      root      system    usr<br></code></pre></td></tr></table></figure>
-<p>可以看见neko文件夹已经出来了，可以作为emby的媒体库使用了。<br><img src="https://cdn.jsdelivr.net/gh/trip14nm/pic2@latest/post/nfs/03.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看见neko文件夹已经出来了，可以作为emby的媒体库使用了。<br><img src="https://outshare.raobee.com/2022/01/01/2b05a4489a274.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>一开始用的是N1-openwrt自带的cifs/smb映射工具把群晖的目录映射在N1的文件系统里，再用docker映射这个目录，但是没有成功，容器一直无法启动。还有一种方法是在容器内部直接用mount指令挂载，只要赋予了–privileged=true参数，是可以成功挂载上的，但是如何在docker启动时自动运行挂载命令挺麻烦，搁置<br>后来看到了这位大佬的文章<br><a target="_blank" rel="noopener" href="https://www.feiyiblog.com/2020/03/31/Docker%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8-%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/">Docker共享存储—共享数据</a><br>于是模仿得出了目前的解决方案，本文核心内容均来自于此。<br>关于Docker的问题，也可以看看这个帖子<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013072756/article/details/108987173">n1.Docker容器个人安装运行所遇异常解决集合</a></p>
 <p>このまま！</p>
 
