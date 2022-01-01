@@ -81,6 +81,27 @@
 
   
   <url>
+    <loc>https://www.icemilk.top/tags/E5%E7%BB%AD%E8%AE%A2/</loc>
+    <lastmod>2022-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/Cloudreve/</loc>
+    <lastmod>2022-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/%E7%BD%91%E7%9B%98/</loc>
+    <lastmod>2022-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.icemilk.top/tags/CDN/</loc>
     <lastmod>2022-01-01</lastmod>
     <changefreq>daily</changefreq>
@@ -123,41 +144,6 @@
   </url>
   
   <url>
-    <loc>https://www.icemilk.top/tags/E5%E7%BB%AD%E8%AE%A2/</loc>
-    <lastmod>2022-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/Cloudreve/</loc>
-    <lastmod>2022-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/%E7%BD%91%E7%9B%98/</loc>
-    <lastmod>2022-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/Goindex/</loc>
-    <lastmod>2022-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/Google-Drive/</loc>
-    <lastmod>2022-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.icemilk.top/tags/Docker/</loc>
     <lastmod>2022-01-01</lastmod>
     <changefreq>daily</changefreq>
@@ -180,6 +166,20 @@
   
   <url>
     <loc>https://www.icemilk.top/tags/%E7%BE%A4%E6%99%96/</loc>
+    <lastmod>2022-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/Goindex/</loc>
+    <lastmod>2022-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/Google-Drive/</loc>
     <lastmod>2022-01-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
