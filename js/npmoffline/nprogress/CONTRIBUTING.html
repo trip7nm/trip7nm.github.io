@@ -1,0 +1,16 @@
+<h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h2><pre><code class="sh">npm install
+npm test
+</code></pre>
+<h2 id="Website"><a href="#Website" class="headerlink" title="Website"></a>Website</h2><p>The website is on the <a href="https://github.com/rstacruz/nprogress/tree/gh-pages">gh-pages</a> branch.</p>
+<pre><code class="sh">git clone https://github.com/rstacruz/nprogress.git nprogress-pages -b gh-pages
+```
+
+## Releasing
+
+```sh
+$ npm test
+$ bump *.json nprogress.js          # bump version numbers
+$ git release 0.1.1                 # release to bower/github
+$ npm publish                       # release to npm
+$ git push origin master:gh-pages   # update the site
+</code></pre>
