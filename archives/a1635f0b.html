@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/favicon.png">
+  <link rel="icon" href="/blog/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
   <meta name="description" content="用免费内网穿透工具Sakurafrp实现远程访问家中群晖NAS及qbittorrent">
 <meta property="og:type" content="article">
 <meta property="og:title" content="没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https">
-<meta property="og:url" content="https://www.icemilk.top/archives/a1635f0b.html">
+<meta property="og:url" content="https://www.icemilk.top/blog/archives/a1635f0b.html">
 <meta property="og:site_name" content="冰牛奶">
 <meta property="og:description" content="用免费内网穿透工具Sakurafrp实现远程访问家中群晖NAS及qbittorrent">
 <meta property="og:locale" content="zh_CN">
@@ -43,22 +43,22 @@
   
   <title>没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https - 冰牛奶</title>
 
-  <link  rel="stylesheet" href="/js/npmoffline/bootstrap/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="/blog/js/npmoffline/bootstrap/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="/js/npmoffline/github-markdown-css/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+  <link  rel="stylesheet" href="/blog/js/npmoffline/github-markdown-css/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/blog/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="/js/npmoffline/highlight.js/styles/github-dark-dimmed.min.css" />
+      <link  rel="stylesheet" href="/blog/js/npmoffline/highlight.js/styles/github-dark-dimmed.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="/js/npmoffline/fancybox/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="/blog/js/npmoffline/fancybox/dist/jquery.fancybox.min.css" />
   
 
 
@@ -71,17 +71,17 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"www.icemilk.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"1b1e00957a49cd2ef5541b893b26d4c0","google":"UA-203450696-1","gtag":280992526,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.icemilk.top","root":"/blog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"1b1e00957a49cd2ef5541b893b26d4c0","google":"UA-203450696-1","gtag":280992526,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/blog/local-search.xml"};
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
@@ -89,7 +89,7 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>冰牛奶</strong>
     </a>
 
@@ -108,7 +108,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/blog/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/blog/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/blog/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/blog/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/blog/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/links/">
+              <a class="nav-link" href="/blog/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -269,13 +269,13 @@
             <h1 style="display: none">没有公网IP？通过免费Sakurafrp访问家中群晖nas同时开启https</h1>
             
             <div class="markdown-body">
-              <p><img src="https://outshare.raobee.com/2022/01/01/f5d78a4da8b0b.png" srcset="/img/loading.gif" lazyload><br>sakurafrp提供免费的内网穿透服务，它们的服务器大多都在国内，延迟十分优秀，免费用户最多拥有5条10mbps的隧道，每月流量有5Gb上限，但是可以通过签到获取大量流量(每天获得3Gb左右)，流量超出后不会停用隧道而是进入限速4mbps的限速模式。作为个人使用访问家中设备的隧道，免费用户已经完全能满足需求了，更详细的流量规则请去它的官网看看吧<br><img src="https://outshare.raobee.com/2022/01/01/aefba39c911e8.png" srcset="/img/loading.gif" lazyload><br>首先呢你要有</p>
+              <p><img src="https://outshare.raobee.com/2022/01/01/f5d78a4da8b0b.png" srcset="/blog/img/loading.gif" lazyload><br>sakurafrp提供免费的内网穿透服务，它们的服务器大多都在国内，延迟十分优秀，免费用户最多拥有5条10mbps的隧道，每月流量有5Gb上限，但是可以通过签到获取大量流量(每天获得3Gb左右)，流量超出后不会停用隧道而是进入限速4mbps的限速模式。作为个人使用访问家中设备的隧道，免费用户已经完全能满足需求了，更详细的流量规则请去它的官网看看吧<br><img src="https://outshare.raobee.com/2022/01/01/aefba39c911e8.png" srcset="/blog/img/loading.gif" lazyload><br>首先呢你要有</p>
 <ul>
 <li>  一个sakurafrp的账号，去<a target="_blank" rel="noopener" href="https://www.natfrp.com/">这里</a>注册</li>
 <li>  一个<strong>已备案</strong>的域名，或<strong>未备案</strong>的域名(使用高延迟的非中国大陆节点)</li>
-<li>  你的群晖nas<h2 id="获取frpc配置文件"><a href="#获取frpc配置文件" class="headerlink" title="获取frpc配置文件"></a>获取frpc配置文件</h2>登录Sakurafrp控制台转到创建隧道<br><img src="https://outshare.raobee.com/2022/01/01/66ec3d3d5a3bc.png" srcset="/img/loading.gif" lazyload><br>上面的穿透节点按需选择，我们需要选择<strong>可建站</strong>的节点来进行穿透，隧道选择<strong>https隧道</strong>，如果使用<strong>tcp</strong>协议代理，那么访问域名的时候需要加上端口，不方便也不美观。本地端口请填写<strong>你的群晖nas</strong>中设置的https访问端口，默认端口是5001(如果你没有改过的话)，绑定域名处填写你自己的域名就好了</li>
+<li>  你的群晖nas<h2 id="获取frpc配置文件"><a href="#获取frpc配置文件" class="headerlink" title="获取frpc配置文件"></a>获取frpc配置文件</h2>登录Sakurafrp控制台转到创建隧道<br><img src="https://outshare.raobee.com/2022/01/01/66ec3d3d5a3bc.png" srcset="/blog/img/loading.gif" lazyload><br>上面的穿透节点按需选择，我们需要选择<strong>可建站</strong>的节点来进行穿透，隧道选择<strong>https隧道</strong>，如果使用<strong>tcp</strong>协议代理，那么访问域名的时候需要加上端口，不方便也不美观。本地端口请填写<strong>你的群晖nas</strong>中设置的https访问端口，默认端口是5001(如果你没有改过的话)，绑定域名处填写你自己的域名就好了</li>
 </ul>
-<p>回到隧道列表，点击刚才创建隧道的<strong>配置文件</strong><br><img src="https://outshare.raobee.com/2022/01/01/2db01c04a62f7.png" srcset="/img/loading.gif" lazyload><br>这个框里面的就是我们要的<strong>配置文件</strong>了，暂时搁置，后面会用到，还有别忘了将你的域名<strong>CNAME</strong>到这个节点域名上</p>
+<p>回到隧道列表，点击刚才创建隧道的<strong>配置文件</strong><br><img src="https://outshare.raobee.com/2022/01/01/2db01c04a62f7.png" srcset="/blog/img/loading.gif" lazyload><br>这个框里面的就是我们要的<strong>配置文件</strong>了，暂时搁置，后面会用到，还有别忘了将你的域名<strong>CNAME</strong>到这个节点域名上</p>
 <h2 id="安装frpc"><a href="#安装frpc" class="headerlink" title="安装frpc"></a>安装frpc</h2><p>ssh连上群晖nas后首先切换为root用户</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo -i<br></code></pre></td></tr></table></figure>
 <p>进入/usr/local/bin/目录下载解压frp本体<br>我的机器是猫盘，采用arm架构的cpu，和群晖DS119J和DS120J一样，请去<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a>找到对应自己机器型号版本的下载地址，用<span class="label label-info">wget <下载地址></span>来下载，如果连接性不佳，开启群晖上的代理设置，用电脑上的代理软件来连接，或者先把文件通过代理下载到本机，然后上传到群晖nas的/usr/local/bin目录下</p>
@@ -290,12 +290,12 @@
 <h2 id="测试frp连接"><a href="#测试frp连接" class="headerlink" title="测试frp连接"></a>测试frp连接</h2><p>执行下面的命令测试 frpc 是否能正常运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">start frpc<br>tail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log<br></code></pre></td></tr></table></figure>
 <p>看到succeed字样就表示连接成功了，除此之外在sakurafrp控制面板的隧道列表里节点前面也会显示<span class="label label-info">[在线]</span>标识</p>
-<h2 id="上传证书开启https"><a href="#上传证书开启https" class="headerlink" title="上传证书开启https"></a>上传证书开启https</h2><p>进入群晖<strong>控制面板-安全性-证书</strong>将你的域名证书导入，证书是哪里来的这里不再赘述了，阿里腾讯都有申请免费ssl证书的渠道。如果这里的域名将作为群晖后台的登录域名，就将它设置为默认证书<br><img src="https://outshare.raobee.com/2022/01/01/e7cc7cb1895d0.png" srcset="/img/loading.gif" lazyload><br>这样就可以通过<span class="label label-info">https://<你的域名></span>访问你的群晖nas了</p>
-<h2 id="群晖反代nas内其他应用"><a href="#群晖反代nas内其他应用" class="headerlink" title="群晖反代nas内其他应用"></a>群晖反代nas内其他应用</h2><p>群晖提供这么方便的证书管理真实不用白不用啊，有些应用例如jellyfin有自己的证书管理，但有些应用提供的证书管理不是那么人性化，于是将证书统一交给群晖管理，还能通过反代加上sakurafrp来实现不用加上端口的访问。<br>这里拿qbittorrent来做例子，它的访问端口是9080，现在我想通过一个域名来访问，回到上面的新建节点的步骤，选择与前一隧道<strong>相同的服务器</strong>来建立隧道，本地端口填写9080<br><img src="https://outshare.raobee.com/2022/01/01/dda66ef783f05.png" srcset="/img/loading.gif" lazyload><br>创建后打开隧道配置文件，结构应该如下</p>
+<h2 id="上传证书开启https"><a href="#上传证书开启https" class="headerlink" title="上传证书开启https"></a>上传证书开启https</h2><p>进入群晖<strong>控制面板-安全性-证书</strong>将你的域名证书导入，证书是哪里来的这里不再赘述了，阿里腾讯都有申请免费ssl证书的渠道。如果这里的域名将作为群晖后台的登录域名，就将它设置为默认证书<br><img src="https://outshare.raobee.com/2022/01/01/e7cc7cb1895d0.png" srcset="/blog/img/loading.gif" lazyload><br>这样就可以通过<span class="label label-info">https://<你的域名></span>访问你的群晖nas了</p>
+<h2 id="群晖反代nas内其他应用"><a href="#群晖反代nas内其他应用" class="headerlink" title="群晖反代nas内其他应用"></a>群晖反代nas内其他应用</h2><p>群晖提供这么方便的证书管理真实不用白不用啊，有些应用例如jellyfin有自己的证书管理，但有些应用提供的证书管理不是那么人性化，于是将证书统一交给群晖管理，还能通过反代加上sakurafrp来实现不用加上端口的访问。<br>这里拿qbittorrent来做例子，它的访问端口是9080，现在我想通过一个域名来访问，回到上面的新建节点的步骤，选择与前一隧道<strong>相同的服务器</strong>来建立隧道，本地端口填写9080<br><img src="https://outshare.raobee.com/2022/01/01/dda66ef783f05.png" srcset="/blog/img/loading.gif" lazyload><br>创建后打开隧道配置文件，结构应该如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">[common]<br>......省略......<br>[你的隧道名称]<br><br>......省略......<br>末尾<br></code></pre></td></tr></table></figure>
 <p>这里仅需要将<span class="label label-info">[你的隧道名称]</span>以及后面部分的配置文件添加到群晖nas的frpc配置文件的末尾就行了<br>通过<span class="label label-info">vim /usr/local/bin/frpc.ini</span>编辑文件后保存退出，重启frpc并查看启动日志</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">stop frpc<br>start frpc<br>tail /var/<span class="hljs-built_in">log</span>/upstart/frpc.log<br></code></pre></td></tr></table></figure>
-<p>回到群晖<strong>控制面板-应用程序门户-反向代理服务器</strong>新增按照如下配置<br><img src="https://outshare.raobee.com/2022/01/01/b642465169dde.png" srcset="/img/loading.gif" lazyload><br><strong>主机名</strong>处填你的域名，保存，再回到<strong>控制面板-安全性-证书</strong>导入此域名的证书<br><img src="https://outshare.raobee.com/2022/01/01/142a465913808.png" srcset="/img/loading.gif" lazyload><br>点击配置，将你的服务切换成对应的证书即可。还是要记得将域名<strong>CNAME</strong>到sakurafrp的节点域名上，待解析生效后就能通过<span class="label label-info">https://<你的域名></span>直接访问群晖中qbittorrent的webUI了<br><img src="https://outshare.raobee.com/2022/01/01/880574eec1b55.png" srcset="/img/loading.gif" lazyload></p>
+<p>回到群晖<strong>控制面板-应用程序门户-反向代理服务器</strong>新增按照如下配置<br><img src="https://outshare.raobee.com/2022/01/01/b642465169dde.png" srcset="/blog/img/loading.gif" lazyload><br><strong>主机名</strong>处填你的域名，保存，再回到<strong>控制面板-安全性-证书</strong>导入此域名的证书<br><img src="https://outshare.raobee.com/2022/01/01/142a465913808.png" srcset="/blog/img/loading.gif" lazyload><br>点击配置，将你的服务切换成对应的证书即可。还是要记得将域名<strong>CNAME</strong>到sakurafrp的节点域名上，待解析生效后就能通过<span class="label label-info">https://<你的域名></span>直接访问群晖中qbittorrent的webUI了<br><img src="https://outshare.raobee.com/2022/01/01/880574eec1b55.png" srcset="/blog/img/loading.gif" lazyload></p>
 <p>加上了ssl后的小锁看的真舒服，不是吗🍋</p>
 
             </div>
@@ -306,7 +306,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+                      <a class="hover-with-bg" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a>
                     
                   </div>
                 
@@ -314,11 +314,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%BE%A4%E6%99%96/">群晖</a>
+                      <a class="hover-with-bg" href="/blog/tags/%E7%BE%A4%E6%99%96/">群晖</a>
                     
-                      <a class="hover-with-bg" href="/tags/qbittorrent/">qbittorrent</a>
+                      <a class="hover-with-bg" href="/blog/tags/qbittorrent/">qbittorrent</a>
                     
-                      <a class="hover-with-bg" href="/tags/sakurafrp/">sakurafrp</a>
+                      <a class="hover-with-bg" href="/blog/tags/sakurafrp/">sakurafrp</a>
                     
                   </div>
                 
@@ -335,7 +335,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/archives/a6b882cb.html">
+                      <a href="/blog/archives/a6b882cb.html">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">N1盒子Docker挂载群晖NFS共享目录</span>
                         <span class="visible-mobile">上一篇</span>
@@ -345,7 +345,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/archives/ff1824ec.html">
+                      <a href="/blog/archives/ff1824ec.html">
                         <span class="hidden-mobile">饥荒联机版专用服务器搭建全流程Windows-Linux</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -413,7 +413,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <img src="https://service-lz5qigge-1257094644.gz.apigw.tencentcs.com/release/get/@ryza?theme=rule34" srcset="/img/loading.gif" lazyload/><br/> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <img src="https://service-lz5qigge-1257094644.gz.apigw.tencentcs.com/release/get/@ryza?theme=rule34" srcset="/blog/img/loading.gif" lazyload/><br/> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
 
@@ -425,8 +425,8 @@
 
   <!-- SCRIPTS -->
   
-  <script  src="/js/npmoffline/nprogress/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="/js/npmoffline/nprogress/nprogress.min.css" />
+  <script  src="/blog/js/npmoffline/nprogress/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="/blog/js/npmoffline/nprogress/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -437,20 +437,20 @@
   </script>
 
 
-<script  src="/js/npmoffline/jquery/dist/jquery.min.js" ></script>
-<script  src="/js/npmoffline/bootstrap/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/npmoffline/jquery/dist/jquery.min.js" ></script>
+<script  src="/blog/js/npmoffline/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -460,16 +460,16 @@
 
 
   
-    <script  src="/js/npmoffline/tocbot/dist/tocbot.min.js" ></script>
+    <script  src="/blog/js/npmoffline/tocbot/dist/tocbot.min.js" ></script>
   
   
-    <script  src="/js/npmoffline/fancybox/dist/jquery.fancybox.min.js" ></script>
+    <script  src="/blog/js/npmoffline/fancybox/dist/jquery.fancybox.min.js" ></script>
   
   
-    <script  src="/js/npmoffline/jsanchor/anchor.min.js" ></script>
+    <script  src="/blog/js/npmoffline/jsanchor/anchor.min.js" ></script>
   
   
-    <script defer src="/js/npmoffline/clipboard/dist/clipboard.min.js" ></script>
+    <script defer src="/blog/js/npmoffline/clipboard/dist/clipboard.min.js" ></script>
   
 
 
@@ -479,7 +479,7 @@
 
 
 
-  <script  src="/js/npmoffline/typed.js/lib/typed.min.js" ></script>
+  <script  src="/blog/js/npmoffline/typed.js/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -547,7 +547,7 @@
 
 
 <!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
 </body>

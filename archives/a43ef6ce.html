@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/favicon.png">
+  <link rel="icon" href="/blog/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
   <meta name="description" content="借助CDN的CNAME接入方式区分国内外访问所使用的CDN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网站同时部署阿里云CDN和Cloudflare加速实现全球加速">
-<meta property="og:url" content="https://www.icemilk.top/archives/a43ef6ce.html">
+<meta property="og:url" content="https://www.icemilk.top/blog/archives/a43ef6ce.html">
 <meta property="og:site_name" content="冰牛奶">
 <meta property="og:description" content="借助CDN的CNAME接入方式区分国内外访问所使用的CDN">
 <meta property="og:locale" content="zh_CN">
@@ -41,22 +41,22 @@
   
   <title>网站同时部署阿里云CDN和Cloudflare加速实现全球加速 - 冰牛奶</title>
 
-  <link  rel="stylesheet" href="/js/npmoffline/bootstrap/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="/blog/js/npmoffline/bootstrap/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="/js/npmoffline/github-markdown-css/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+  <link  rel="stylesheet" href="/blog/js/npmoffline/github-markdown-css/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/blog/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="/js/npmoffline/highlight.js/styles/github-dark-dimmed.min.css" />
+      <link  rel="stylesheet" href="/blog/js/npmoffline/highlight.js/styles/github-dark-dimmed.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="/js/npmoffline/fancybox/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="/blog/js/npmoffline/fancybox/dist/jquery.fancybox.min.css" />
   
 
 
@@ -69,17 +69,17 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"www.icemilk.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"1b1e00957a49cd2ef5541b893b26d4c0","google":"UA-203450696-1","gtag":280992526,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.icemilk.top","root":"/blog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"1b1e00957a49cd2ef5541b893b26d4c0","google":"UA-203450696-1","gtag":280992526,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/blog/local-search.xml"};
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
@@ -87,7 +87,7 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>冰牛奶</strong>
     </a>
 
@@ -106,7 +106,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/blog/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -118,7 +118,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/blog/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -130,7 +130,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/blog/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -142,7 +142,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/blog/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -154,7 +154,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/blog/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -166,7 +166,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/links/">
+              <a class="nav-link" href="/blog/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -268,22 +268,22 @@
             
             <div class="markdown-body">
               <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>借助Cloudflare的CNAME接入方式实现不用DNS接入就使用CF的CDN，CF在境外还是相当好用的，免费套餐个人使用的话完全够用了.</p>
-<h2 id="境内阿里云CDN"><a href="#境内阿里云CDN" class="headerlink" title="境内阿里云CDN"></a>境内阿里云CDN</h2><p>阿里云原本就是CNAME方式使用，将域名解析<strong>默认</strong>线路解析到阿里云加速给的CNAME地址<br><img src="https://outshare.raobee.com/2022/01/01/49a2ac2f2fca7.png" srcset="/img/loading.gif" lazyload><br><img src="https://outshare.raobee.com/2022/01/01/9488290efe470.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="境内阿里云CDN"><a href="#境内阿里云CDN" class="headerlink" title="境内阿里云CDN"></a>境内阿里云CDN</h2><p>阿里云原本就是CNAME方式使用，将域名解析<strong>默认</strong>线路解析到阿里云加速给的CNAME地址<br><img src="https://outshare.raobee.com/2022/01/01/49a2ac2f2fca7.png" srcset="/blog/img/loading.gif" lazyload><br><img src="https://outshare.raobee.com/2022/01/01/9488290efe470.png" srcset="/blog/img/loading.gif" lazyload></p>
 <h2 id="境外Cloudflare"><a href="#境外Cloudflare" class="headerlink" title="境外Cloudflare"></a>境外Cloudflare</h2><h3 id="绑定笨牛"><a href="#绑定笨牛" class="headerlink" title="绑定笨牛"></a>绑定笨牛</h3><p>首先进入笨牛，绑定你的CF账号</p>
 <ul>
 <li>  <a target="_blank" rel="noopener" href="https://cdn.bnxb.com/"><strong>https://cdn.bnxb.com/</strong></a></li>
 </ul>
-<p>回笨牛主页<br><img src="https://outshare.raobee.com/2022/01/01/3c6a01a2ac608.png" srcset="/img/loading.gif" lazyload><br>域名接入-添加域名</p>
+<p>回笨牛主页<br><img src="https://outshare.raobee.com/2022/01/01/3c6a01a2ac608.png" srcset="/blog/img/loading.gif" lazyload><br>域名接入-添加域名</p>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
 <li>  笨牛一天只能接入一个域名</li>
 <li>  Freenom系的免费域名(.tk,.cf,.ml,.ga之类的)已经不支持IP回源且不支持修改记录，因此如需添加这类免费域名，请选CNAME回源并一次性设置好需要的子域名，不然后续将无法修改记录</li>
 </ul>
-<p><img src="https://outshare.raobee.com/2022/01/01/8a677016afdcc.png" srcset="/img/loading.gif" lazyload><br>填写你的域名信息，这里的回源信息就填<strong>你要套CDN的网站</strong>所在服务器的信息，ip回源或者CNAME回源<br>回到笨牛的域名列表，如果成功添加了域名的话你会看到一个CNAME接入的域名，点进去切换到<strong>域名解析</strong><br><img src="https://outshare.raobee.com/2022/01/01/c211bdc5faf66.png" srcset="/img/loading.gif" lazyload><br>在下方会看到一个提示让你把域名解析到一个CNAME地址<span class="label label-info">******.cdn.cloudflare.net</span>，这就是你的CF的CNAME接入地址了<br>到此在笨牛的操作就结束了，回到你的域名托管商新加添加一条CNAME解析<br><img src="https://outshare.raobee.com/2022/01/01/ef42fe721e246.png" srcset="/img/loading.gif" lazyload><br>线路选择境外，地址填之前在笨牛看到的<span class="label label-info">******.cdn.cloudflare.net</span></p>
+<p><img src="https://outshare.raobee.com/2022/01/01/8a677016afdcc.png" srcset="/blog/img/loading.gif" lazyload><br>填写你的域名信息，这里的回源信息就填<strong>你要套CDN的网站</strong>所在服务器的信息，ip回源或者CNAME回源<br>回到笨牛的域名列表，如果成功添加了域名的话你会看到一个CNAME接入的域名，点进去切换到<strong>域名解析</strong><br><img src="https://outshare.raobee.com/2022/01/01/c211bdc5faf66.png" srcset="/blog/img/loading.gif" lazyload><br>在下方会看到一个提示让你把域名解析到一个CNAME地址<span class="label label-info">******.cdn.cloudflare.net</span>，这就是你的CF的CNAME接入地址了<br>到此在笨牛的操作就结束了，回到你的域名托管商新加添加一条CNAME解析<br><img src="https://outshare.raobee.com/2022/01/01/ef42fe721e246.png" srcset="/blog/img/loading.gif" lazyload><br>线路选择境外，地址填之前在笨牛看到的<span class="label label-info">******.cdn.cloudflare.net</span></p>
 <h2 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h2><p>等待<strong>解析设置后生效后</strong>使用多地ping</p>
 <ul>
 <li>  <a target="_blank" rel="noopener" href="http://ping.chinaz.com/"><strong>http://ping.chinaz.com/</strong></a></li>
 </ul>
-<p><img src="https://outshare.raobee.com/2022/01/01/550397348a2c9.png" srcset="/img/loading.gif" lazyload><br>可以看到境内返回的是阿里的CDN节点ip，境外返回的是CF的节点ip</p>
+<p><img src="https://outshare.raobee.com/2022/01/01/550397348a2c9.png" srcset="/blog/img/loading.gif" lazyload><br>可以看到境内返回的是阿里的CDN节点ip，境外返回的是CF的节点ip</p>
 <h2 id="What-if？"><a href="#What-if？" class="headerlink" title="What if？"></a>What if？</h2><p>在笨牛的域名解析界面可以看到除了给了CNAME的地址外还给出了一些ip，这些ip都是Cloudflare的节点服务器ip，只要把域名解析到其中任何一个上，你在CF的域名解析和CDN都会生效，而且流量走的就是你所解析的这个ip，CF的ip有很多，可以A记录到固定ip来实现手动优选CF加速节点<br>根据当前网络环境优选CF节点的脚本(十分好用)</p>
 <ul>
 <li>  <a target="_blank" rel="noopener" href="https://github.com/badafans/better-cloudflare-ip">https://github.com/badafans/better-cloudflare-ip</a></li>
@@ -297,7 +297,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+                      <a class="hover-with-bg" href="/blog/categories/%E7%BD%91%E7%BB%9C/">网络</a>
                     
                   </div>
                 
@@ -305,11 +305,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/CDN/">CDN</a>
+                      <a class="hover-with-bg" href="/blog/tags/CDN/">CDN</a>
                     
-                      <a class="hover-with-bg" href="/tags/Cloudflare/">Cloudflare</a>
+                      <a class="hover-with-bg" href="/blog/tags/Cloudflare/">Cloudflare</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
+                      <a class="hover-with-bg" href="/blog/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
                     
                   </div>
                 
@@ -326,7 +326,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/archives/ff1824ec.html">
+                      <a href="/blog/archives/ff1824ec.html">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">饥荒联机版专用服务器搭建全流程Windows-Linux</span>
                         <span class="visible-mobile">上一篇</span>
@@ -336,7 +336,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/archives/c4ac2dd2.html">
+                      <a href="/blog/archives/c4ac2dd2.html">
                         <span class="hidden-mobile">用Goindex索引Google Drive文件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -404,7 +404,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <img src="https://service-lz5qigge-1257094644.gz.apigw.tencentcs.com/release/get/@ryza?theme=rule34" srcset="/img/loading.gif" lazyload/><br/> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <img src="https://service-lz5qigge-1257094644.gz.apigw.tencentcs.com/release/get/@ryza?theme=rule34" srcset="/blog/img/loading.gif" lazyload/><br/> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
 
@@ -416,8 +416,8 @@
 
   <!-- SCRIPTS -->
   
-  <script  src="/js/npmoffline/nprogress/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="/js/npmoffline/nprogress/nprogress.min.css" />
+  <script  src="/blog/js/npmoffline/nprogress/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="/blog/js/npmoffline/nprogress/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -428,20 +428,20 @@
   </script>
 
 
-<script  src="/js/npmoffline/jquery/dist/jquery.min.js" ></script>
-<script  src="/js/npmoffline/bootstrap/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/npmoffline/jquery/dist/jquery.min.js" ></script>
+<script  src="/blog/js/npmoffline/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -451,16 +451,16 @@
 
 
   
-    <script  src="/js/npmoffline/tocbot/dist/tocbot.min.js" ></script>
+    <script  src="/blog/js/npmoffline/tocbot/dist/tocbot.min.js" ></script>
   
   
-    <script  src="/js/npmoffline/fancybox/dist/jquery.fancybox.min.js" ></script>
+    <script  src="/blog/js/npmoffline/fancybox/dist/jquery.fancybox.min.js" ></script>
   
   
-    <script  src="/js/npmoffline/jsanchor/anchor.min.js" ></script>
+    <script  src="/blog/js/npmoffline/jsanchor/anchor.min.js" ></script>
   
   
-    <script defer src="/js/npmoffline/clipboard/dist/clipboard.min.js" ></script>
+    <script defer src="/blog/js/npmoffline/clipboard/dist/clipboard.min.js" ></script>
   
 
 
@@ -470,7 +470,7 @@
 
 
 
-  <script  src="/js/npmoffline/typed.js/lib/typed.min.js" ></script>
+  <script  src="/blog/js/npmoffline/typed.js/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -538,7 +538,7 @@
 
 
 <!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
 </body>
