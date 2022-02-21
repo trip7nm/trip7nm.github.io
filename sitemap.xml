@@ -101,27 +101,6 @@
 
   
   <url>
-    <loc>https://www.icemilk.top/tags/CDN/</loc>
-    <lastmod>2022-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/Cloudflare/</loc>
-    <lastmod>2022-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.icemilk.top/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2022-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.icemilk.top/tags/E5%E7%BB%AD%E8%AE%A2/</loc>
     <lastmod>2022-02-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -143,14 +122,21 @@
   </url>
   
   <url>
-    <loc>https://www.icemilk.top/tags/Goindex/</loc>
+    <loc>https://www.icemilk.top/tags/CDN/</loc>
     <lastmod>2022-02-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.icemilk.top/tags/Google-Drive/</loc>
+    <loc>https://www.icemilk.top/tags/Cloudflare/</loc>
+    <lastmod>2022-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
     <lastmod>2022-02-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -172,6 +158,20 @@
   
   <url>
     <loc>https://www.icemilk.top/tags/%E9%A5%A5%E8%8D%92%E8%81%94%E6%9C%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2022-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/Goindex/</loc>
+    <lastmod>2022-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.icemilk.top/tags/Google-Drive/</loc>
     <lastmod>2022-02-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
